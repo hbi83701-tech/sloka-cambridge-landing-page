@@ -10,11 +10,7 @@ import { runLoader } from './modules/loader.js';
 import { spark } from './modules/spark.js';
 import { initHero, heroIntro } from './modules/hero.js';
 import { initCompasses } from './modules/compass.js';
-import { initApproach } from './modules/approach.js';
-import { initVoice } from './modules/voice.js';
 import { initBento } from './modules/bento.js';
-import { initReasons } from './modules/reasons.js';
-import { initOrbitMap, initMapEmbed } from './modules/orbit-map.js';
 import { initBgMorph, initTextReveals, initImageReveals, initSkew, initChrome, initFooter } from './modules/motion.js';
 
 const root = document.documentElement;
@@ -70,9 +66,7 @@ if (!env.hasLibs) {
     if (setUp) return;
     setUp = true;
     const steps = [
-      initApproach,
-      initVoice, initBento, initReasons,
-      initOrbitMap, initMapEmbed, initImageReveals, initSkew, initChrome, initFooter
+      initBento, initImageReveals, initSkew, initChrome, initFooter
     ];
     for (const step of steps) {
       step();
