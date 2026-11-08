@@ -1241,37 +1241,77 @@ mark.is-marked { background-size: 100% 100%; }
   .hero__form #ee-form-8 .ee-form-body { grid-template-columns: 1fr; }
 }
 
-/* ---------- 23. Campus motion ---------- */
+/* ---------- 23. Campus: building photos, one by one ----------
+   Base = a plain stack of photos (phones, reduced motion, no JS).
+   .campus--stage (added by js/modules/campus.js on desktop) pins the section and lays the
+   photos on top of each other; the script then swings them in one at a time. */
 .flow--campus { overflow: hidden; }
-.flow--campus .flow__inner { position: relative; z-index: 1; }
 .campus__glow {
-  position: absolute; z-index: 0; right: -6%; top: 14%; width: min(48vw, 600px); aspect-ratio: 1; border-radius: 50%; pointer-events: none;
-  background: radial-gradient(circle, rgba(249, 194, 18, .55) 0%, rgba(232, 119, 36, .24) 42%, transparent 70%); filter: blur(10px);
+  position: absolute; z-index: 0; right: -6%; top: 10%; width: min(48vw, 600px); aspect-ratio: 1; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(249, 194, 18, .5) 0%, rgba(232, 119, 36, .22) 42%, transparent 70%); filter: blur(10px);
+}
+.campus__pin { position: relative; z-index: 1; max-width: var(--max); margin: 0 auto; }
+.campus__pin .flow__head { max-width: none; margin-bottom: clamp(24px, 4vw, 44px); }
+.campus__pin .flow__head > div { display: grid; gap: 14px; max-width: 52ch; }
+.campus__count { display: none; margin: 0; font-family: var(--f-display); color: var(--maroon); line-height: 1; }
+.campus__count b { font-weight: 400; font-size: clamp(2.6rem, 2rem + 2.4vw, 4.4rem); }
+.campus__count span { margin-left: .35em; font: 700 .85rem var(--f-body); letter-spacing: .16em; color: var(--muted); }
+.campus__dots { display: none; list-style: none; margin: 0; padding: 0; gap: 10px; justify-content: center; }
+.campus__dots li { width: 10px; height: 10px; border-radius: 99px; background: rgba(151, 27, 30, .25); transition: width .35s var(--ease-out), background-color .35s; }
+.campus__dots li.is-on { width: 34px; background: var(--maroon); }
+
+.shots { display: grid; gap: clamp(18px, 3vw, 32px); }
+.shot { position: relative; margin: 0; }
+.shot__frame {
+  aspect-ratio: 16 / 10; border: 8px solid #fff; border-radius: 22px; overflow: hidden; background: var(--kraft);
+  box-shadow: 0 30px 50px -28px rgba(118, 21, 24, .55), 0 2px 0 rgba(26, 17, 16, .05);
+}
+.shot__frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.shot__cap {
+  position: absolute; left: 22px; bottom: 22px; padding: .4em .95em; border-radius: 999px;
+  background: var(--yellow); color: var(--ink); font-weight: 700; font-size: .9rem; box-shadow: 0 6px 16px -8px rgba(26, 17, 16, .5);
+}
+.shot__no {
+  position: absolute; right: 18px; top: -.32em; z-index: 2; font-family: var(--f-display); font-size: clamp(3rem, 2rem + 4vw, 6.4rem); line-height: 1;
+  color: transparent; -webkit-text-stroke: 2px var(--maroon); pointer-events: none;
 }
 
-/* moving strip between the heading and the photos */
-.campus__ticker {
-  overflow: hidden; margin: 0 0 clamp(22px, 3.4vw, 40px); border-radius: 999px;
-  background: var(--maroon); color: var(--yellow); box-shadow: 0 10px 26px -14px rgba(118, 21, 24, .6);
+/* empty frame: warm tinted card with a soft light sweep, so it reads as "photo arriving" */
+.shot__ph {
+  position: relative; overflow: hidden; width: 100%; height: 100%; display: grid; place-items: center; color: var(--maroon);
+  background: linear-gradient(135deg, #F6E7C8, #ECD4A6); border-radius: 12px;
 }
-.campus__ticker-track { display: flex; align-items: center; width: max-content; padding: 12px 0; animation: campusTick 34s linear infinite; }
-.campus__ticker-track span { padding: 0 clamp(14px, 2vw, 28px); font-family: var(--f-display); font-size: clamp(1.05rem, .9rem + .6vw, 1.5rem); white-space: nowrap; color: var(--paper); }
-.campus__ticker-track i { font-style: normal; font-size: 1.05rem; color: var(--yellow); animation: campusSpin 6s linear infinite; display: inline-block; }
-.campus__ticker:hover .campus__ticker-track { animation-play-state: paused; }
-@keyframes campusTick { to { transform: translateX(-50%); } }
-@keyframes campusSpin { to { transform: rotate(360deg); } }
-
-/* empty photo frames: a soft light sweeps across and the label breathes, so they read as "photo arriving" */
-.mosaic__slot { position: relative; overflow: hidden; }
-.mosaic__slot::after {
+.shot:nth-child(3) .shot__ph { background: linear-gradient(135deg, #F7DDB8, #EBC38C); }
+.shot:nth-child(4) .shot__ph { background: linear-gradient(135deg, #EFE3C6, #DCC9A0); }
+.shot:nth-child(5) .shot__ph { background: linear-gradient(135deg, #F8E2A8, #EFC96B); }
+.shot__ph::before { content: ""; position: absolute; inset: 14px; border: 2px dashed rgba(151, 27, 30, .4); border-radius: 10px; }
+.shot__ph::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(105deg, transparent 32%, rgba(255, 255, 255, .6) 50%, transparent 68%);
-  transform: translateX(-120%); animation: campusShimmer 3.4s ease-in-out infinite;
+  background: linear-gradient(105deg, transparent 32%, rgba(255, 255, 255, .55) 50%, transparent 68%);
+  transform: translateX(-120%); animation: shotSweep 3.4s ease-in-out infinite;
 }
-.mosaic__slot:nth-of-type(3)::after { animation-delay: .5s; }
-.mosaic__slot:nth-of-type(4)::after { animation-delay: 1s; }
-.mosaic__slot:nth-of-type(5)::after { animation-delay: 1.5s; }
-.mosaic__slot .slot__tag { animation: campusPulse 2.6s ease-in-out infinite; }
-@keyframes campusShimmer { 0%, 35% { transform: translateX(-120%); } 75%, 100% { transform: translateX(120%); } }
-@keyframes campusPulse { 50% { opacity: .45; letter-spacing: .24em; } }
-@media (prefers-reduced-motion: reduce) { .mosaic__slot::after { display: none; } }
+.shot__ph .slot__tag { animation: shotPulse 2.6s ease-in-out infinite; }
+@keyframes shotSweep { 0%, 35% { transform: translateX(-120%); } 75%, 100% { transform: translateX(120%); } }
+@keyframes shotPulse { 50% { opacity: .5; letter-spacing: .24em; } }
+@media (prefers-reduced-motion: reduce) { .shot__ph::after { display: none; } }
+
+/* ----- desktop stage (class added by the script) ----- */
+@media (min-width: 900px) {
+  .campus--stage { padding: 0; }
+  .campus--stage .campus__pin {
+    height: 100vh; height: 100svh; box-sizing: border-box; display: flex; flex-direction: column; gap: clamp(8px, 1.8vh, 18px);
+    padding: calc(var(--header-h) + 8px) var(--gutter) clamp(14px, 2.6vh, 28px);
+  }
+  .campus--stage .flow__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin: 0; }
+  .campus--stage .flow__head > div { gap: 6px; }
+  .campus--stage .flow__head .display-md { font-size: clamp(1.9rem, 1.2rem + 2.4vw, 3.4rem); }
+  .campus--stage .flow__lede { font-size: clamp(.95rem, .9rem + .25vw, 1.1rem); }
+  .campus--stage .campus__count { display: block; }
+  .campus--stage .shots { position: relative; display: block; flex: 1; min-height: 0; perspective: 1800px; }
+  .campus--stage .shot {
+    position: absolute; top: 0; left: 50%; height: 100%; width: auto; aspect-ratio: 16 / 10; max-width: 100%;
+    transform-style: preserve-3d; will-change: transform, opacity;
+  }
+  .campus--stage .shot__frame { height: 100%; aspect-ratio: auto; border-width: 10px; }
+  .campus--stage .campus__dots { display: flex; }
+}

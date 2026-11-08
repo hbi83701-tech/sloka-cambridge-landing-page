@@ -168,36 +168,54 @@
       <p class="hero__note hand" aria-hidden="true">scroll, the spark follows you ↓</p>
     </section>
 
-    <!-- ================= 3.2 CAMPUS: photos of the building =================
-         Empty frames (.slot) are waiting for photos. To fill one, replace the <figure class="slot">
-         with: <figure class="mosaic__item"><img src="assets/img/NAME-800.webp" width="1600" height="1200" loading="lazy" alt="..."></figure> -->
+    <!-- ================= 3.2 CAMPUS: building photos, one by one as you scroll =================
+         Desktop: the section pins and each photo swings in from the right (js/modules/campus.js).
+         Phones / reduced motion: a plain stack of photos.
+         To fill a frame, replace its <div class="shot__ph">...</div> with:
+         <img src="assets/img/NAME-800.webp" width="1600" height="1000" loading="lazy" alt="..."> -->
     <section class="flow flow--campus" id="campus" data-bg="cream" aria-labelledby="campus-title">
       <span class="campus__glow" aria-hidden="true"></span>
-      <div class="flow__inner">
+      <div class="campus__pin">
         <header class="flow__head">
-          <p class="eyebrow">01 · Our campus</p>
-          <h2 class="display-md" id="campus-title" data-split>Step inside the school.</h2>
-          <p class="flow__lede">The Sloka building in Manneguda, from the front gate to the classrooms.</p>
-        </header>
-        <!-- moving strip: pure CSS, the two lists are identical so the loop is seamless -->
-        <div class="campus__ticker" aria-hidden="true">
-          <div class="campus__ticker-track">
-            <span>Cambridge curriculum</span><i>✦</i><span>Early Years to A Levels</span><i>✦</i><span>Manneguda, Hyderabad</span><i>✦</i>
-            <span>Cambridge curriculum</span><i>✦</i><span>Early Years to A Levels</span><i>✦</i><span>Manneguda, Hyderabad</span><i>✦</i>
-            <span>Cambridge curriculum</span><i>✦</i><span>Early Years to A Levels</span><i>✦</i><span>Manneguda, Hyderabad</span><i>✦</i>
-            <span>Cambridge curriculum</span><i>✦</i><span>Early Years to A Levels</span><i>✦</i><span>Manneguda, Hyderabad</span><i>✦</i>
+          <div>
+            <p class="eyebrow">01 · Our campus</p>
+            <h2 class="display-md" id="campus-title" data-split>Step inside the school.</h2>
+            <p class="flow__lede">The Sloka building in Manneguda, from the front gate to the classrooms.</p>
           </div>
-        </div>
-        <div class="mosaic">
-          <figure class="mosaic__item mosaic__item--lead">
-            <img src="assets/img/hero-campus-800.webp" srcset="assets/img/hero-campus-480.webp 480w, assets/img/hero-campus-800.webp 800w, assets/img/hero-campus-1080.webp 1080w" sizes="(min-width: 900px) 58vw, 92vw" width="1536" height="1024" loading="lazy" decoding="async" alt="The Sloka International School building in Manneguda, its yellow facade glowing.">
-            <figcaption>The main building</figcaption>
+          <p class="campus__count" aria-hidden="true"><b data-campus-count>01</b><span>/ 05</span></p>
+        </header>
+
+        <div class="shots" data-shots>
+          <figure class="shot">
+            <div class="shot__frame">
+              <img src="assets/img/hero-campus-800.webp" srcset="assets/img/hero-campus-480.webp 480w, assets/img/hero-campus-800.webp 800w, assets/img/hero-campus-1080.webp 1080w, assets/img/hero-campus-1600.webp 1536w" sizes="(min-width: 900px) 70vw, 92vw" width="1536" height="1024" loading="lazy" decoding="async" alt="The Sloka International School building in Manneguda, its yellow facade glowing.">
+            </div>
+            <figcaption class="shot__cap">The main building</figcaption>
+            <span class="shot__no" aria-hidden="true">01</span>
           </figure>
-          <figure class="slot mosaic__slot" role="img" aria-label="Building photo to be added"><span class="slot__tag">Building photo</span></figure>
-          <figure class="slot mosaic__slot" role="img" aria-label="Building photo to be added"><span class="slot__tag">Building photo</span></figure>
-          <figure class="slot mosaic__slot" role="img" aria-label="Building photo to be added"><span class="slot__tag">Building photo</span></figure>
-          <figure class="slot mosaic__slot" role="img" aria-label="Building photo to be added"><span class="slot__tag">Building photo</span></figure>
+          <figure class="shot">
+            <div class="shot__frame"><div class="shot__ph" role="img" aria-label="Building photo to be added"><span class="slot__tag">Building photo</span></div></div>
+            <figcaption class="shot__cap">Photo 2</figcaption>
+            <span class="shot__no" aria-hidden="true">02</span>
+          </figure>
+          <figure class="shot">
+            <div class="shot__frame"><div class="shot__ph" role="img" aria-label="Building photo to be added"><span class="slot__tag">Building photo</span></div></div>
+            <figcaption class="shot__cap">Photo 3</figcaption>
+            <span class="shot__no" aria-hidden="true">03</span>
+          </figure>
+          <figure class="shot">
+            <div class="shot__frame"><div class="shot__ph" role="img" aria-label="Building photo to be added"><span class="slot__tag">Building photo</span></div></div>
+            <figcaption class="shot__cap">Photo 4</figcaption>
+            <span class="shot__no" aria-hidden="true">04</span>
+          </figure>
+          <figure class="shot">
+            <div class="shot__frame"><div class="shot__ph" role="img" aria-label="Building photo to be added"><span class="slot__tag">Building photo</span></div></div>
+            <figcaption class="shot__cap">Photo 5</figcaption>
+            <span class="shot__no" aria-hidden="true">05</span>
+          </figure>
         </div>
+
+        <ol class="campus__dots" aria-hidden="true"><li class="is-on"></li><li></li><li></li><li></li><li></li></ol>
       </div>
     </section>
 

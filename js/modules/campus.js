@@ -1,10 +1,12 @@
 /* =====================================================================
-   Campus section: the photo opens like a window as you scroll (clip-path
-   grows from a small rounded frame to the full width) while the picture
-   settles from a slow zoom; the caption chip pops in; the empty frames
-   tumble in one by one; a sun glow drifts behind everything. On a mouse
-   the lead photo also leans a little toward the pointer.
-   Reduced motion: nothing here runs, the page just shows the final layout.
+   Campus section: building photos, one by one as you scroll.
+
+   Desktop: the section pins to the screen. Each photo swings in from the
+   right in 3D (cover-flow), settles in the centre, then is pushed off to
+   the left, dimmed and tilted, as the next one arrives. A counter, dots
+   and a big ghost numeral follow along.
+   Phones: no pinning. Each photo tumbles in as it scrolls into view.
+   Reduced motion / no GSAP: nothing runs, the photos are a plain stack.
    ===================================================================== */
 import { env } from './env.js';
 
@@ -12,79 +14,75 @@ export function initCampus() {
   const sec = document.querySelector('.flow--campus');
   if (!sec || env.reduced || !env.hasLibs) return;
 
-  const lead = sec.querySelector('.mosaic__item--lead');
-  const img = lead?.querySelector('img');
-  const chip = lead?.querySelector('figcaption');
-  const slots = [...sec.querySelectorAll('.mosaic__slot')];
+  const shots = [...sec.querySelectorAll('.shot')];
+  const counter = sec.querySelector('[data-campus-count]');
+  const dots = [...sec.querySelectorAll('.campus__dots li')];
   const glow = sec.querySelector('.campus__glow');
-  const heading = sec.querySelector('.flow__head');
-  if (!lead || !img) return;
+  const n = shots.length;
+  if (!n) return;
 
-  const inset = env.mobile ? '8% 7% 8% 7%' : '16% 22% 16% 22%';
+  const mm = gsap.matchMedia();
 
-  // 1. the photo opens like a window
-  gsap.fromTo(lead,
-    { clipPath: `inset(${inset} round 56px)` },
-    {
-      clipPath: 'inset(0% 0% 0% 0% round 22px)', ease: 'none',
-      scrollTrigger: { trigger: lead, start: 'top 94%', end: 'top 36%', scrub: 0.6 }
+  /* ---------- desktop: pinned 3D gallery ---------- */
+  mm.add('(min-width: 900px)', () => {
+    sec.classList.add('campus--stage');
+
+    const away = () => innerWidth * 0.75;          // waiting off-screen right
+    const behind = () => -innerWidth * 0.3;        // just-passed, tucked left
+    const gone = () => -innerWidth * 0.58;         // two photos back, out of sight
+
+    gsap.set(shots, { xPercent: -50, x: away, rotateY: -38, scale: 0.9, opacity: 0, zIndex: (i) => i + 1 });
+    gsap.set(shots[0], { x: 0, rotateY: 0, scale: 1, opacity: 1 });
+
+    const HOLD = 0.35, MOVE = 0.65, TAIL = 0.4;     // timeline units: rest, travel, final rest
+    let current = 0;
+    const tl = gsap.timeline({
+      defaults: { ease: 'power2.inOut' },
+      scrollTrigger: {
+        trigger: sec, start: 'top top', end: () => '+=' + Math.round(innerHeight * (n - 1 + TAIL) * 0.9),
+        pin: true, scrub: 0.7, anticipatePin: 1, invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          // photo i takes over once the swap to it is half done
+          const t = self.progress * (n - 1 + TAIL);
+          const idx = Math.max(0, Math.min(n - 1, Math.floor(t - HOLD - MOVE / 2 + 1)));
+          if (idx === current) return;
+          current = idx;
+          if (counter) counter.textContent = String(idx + 1).padStart(2, '0');
+          dots.forEach((d, i) => d.classList.toggle('is-on', i === idx));
+          sec.dataset.shot = String(idx + 1);
+        }
+      }
     });
 
-  // ...and the picture itself settles from a slow zoom
-  gsap.fromTo(img,
-    { scale: 1.3, yPercent: -4 },
-    {
-      scale: 1, yPercent: 0, ease: 'none',
-      scrollTrigger: { trigger: lead, start: 'top 94%', end: 'center 42%', scrub: 0.8 }
-    });
+    for (let i = 1; i < n; i++) {
+      const at = i - 1 + HOLD;
+      tl.to(shots[i - 1], { x: behind, rotateY: 28, scale: 0.8, opacity: 0.35, duration: MOVE }, at)
+        .to(shots[i], { x: 0, rotateY: 0, scale: 1, opacity: 1, duration: MOVE }, at);
+      if (i >= 2) tl.to(shots[i - 2], { x: gone, rotateY: 40, scale: 0.7, opacity: 0, duration: MOVE }, at);
+    }
+    tl.to({}, { duration: TAIL }); // let the last photo rest before the page moves on
 
-  // 2. the caption chip pops in once the window is mostly open
-  if (chip) {
-    gsap.fromTo(chip,
-      { y: 36, opacity: 0, scale: 0.5, rotate: -8 },
-      {
-        y: 0, opacity: 1, scale: 1, rotate: 0, duration: 0.7, ease: 'back.out(2.2)',
-        scrollTrigger: { trigger: lead, start: 'top 50%', toggleActions: 'play none none reverse' }
+    if (glow) {
+      gsap.fromTo(glow, { yPercent: 20, xPercent: -25, scale: 0.8 }, {
+        yPercent: -30, xPercent: 20, scale: 1.25, ease: 'none',
+        scrollTrigger: { trigger: sec, start: 'top bottom', end: () => '+=' + Math.round(innerHeight * (n + 1)), scrub: 1 }
       });
-  }
+    }
 
-  // 3. the empty frames tumble in, each at its own angle
-  if (slots.length) {
-    const tilt = [-5, 4, -3, 5];
-    gsap.from(slots, {
-      y: 80, opacity: 0, scale: 0.9, rotate: (i) => tilt[i % tilt.length], transformOrigin: '50% 100%',
-      duration: 0.9, ease: 'power3.out', stagger: 0.12,
-      scrollTrigger: { trigger: slots[0], start: 'top 92%', toggleActions: 'play none none none' }
-    });
-  }
+    return () => {                                   // leaving desktop width: back to the plain stack
+      sec.classList.remove('campus--stage');
+      delete sec.dataset.shot;
+    };
+  });
 
-  // 4. a warm sun glow drifts diagonally behind the section
-  if (glow) {
-    gsap.fromTo(glow,
-      { yPercent: 25, xPercent: -20, scale: 0.8 },
-      {
-        yPercent: -45, xPercent: 20, scale: 1.25, ease: 'none',
-        scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: 1 }
+  /* ---------- phones / small screens: each photo tumbles in ---------- */
+  mm.add('(max-width: 899px)', () => {
+    const tilt = [-3, 3, -2, 3, -3];
+    shots.forEach((s, i) => {
+      gsap.from(s, {
+        y: 70, opacity: 0, rotate: tilt[i % tilt.length], scale: 0.94, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: s, start: 'top 88%', toggleActions: 'play none none none' }
       });
-  }
-
-  // 5. the heading block floats up a touch slower than the page
-  if (heading && !env.mobile) {
-    gsap.fromTo(heading, { y: 40 }, {
-      y: -30, ease: 'none',
-      scrollTrigger: { trigger: sec, start: 'top bottom', end: 'center top', scrub: 1 }
     });
-  }
-
-  // 6. mouse only: the photo leans toward the pointer
-  if (env.rich) {
-    const mx = gsap.quickTo(img, 'x', { duration: 0.8, ease: 'power3.out' });
-    const my = gsap.quickTo(img, 'y', { duration: 0.8, ease: 'power3.out' });
-    lead.addEventListener('pointermove', (e) => {
-      const r = lead.getBoundingClientRect();
-      mx(((e.clientX - r.left) / r.width - 0.5) * -26);
-      my(((e.clientY - r.top) / r.height - 0.5) * -18);
-    });
-    lead.addEventListener('pointerleave', () => { mx(0); my(0); });
-  }
+  });
 }
