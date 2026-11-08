@@ -286,8 +286,7 @@
     </section>
 
     <!-- ================= 3.3 FACILITIES (ported from the Tukkuguda page) =================
-         Photo cards for the campus spaces; the bar picks one space or shows them all. These are Manneguda's own
-         photos. To add a space, copy a <li class="fac"> and its chip (data-fac-filter must match fac--KEY). -->
+         Photo cards for the campus spaces; the bar picks one space or shows them all. These are the spaces and photos Manneguda's page already had. To add a space, copy a <li class="fac"> and its chip (data-fac-filter must match fac--KEY). -->
     <div class="tk">
     <section class="section" id="facilities" aria-labelledby="facilities-title">
       <div class="wrap">
@@ -298,151 +297,100 @@
 
         <div class="facbar" role="group" aria-label="Choose a facility" data-facbar>
             <button class="facbar__chip" type="button" data-fac-filter="all" aria-pressed="true"><span class="facbar__group">Every space</span>All</button>
-            <button class="facbar__chip" type="button" data-fac-filter="building" aria-pressed="false"><span class="facbar__group">Campus</span>The Campus Building</button>
-            <button class="facbar__chip" type="button" data-fac-filter="classroom" aria-pressed="false"><span class="facbar__group">Learn</span>Classrooms</button>
+            <button class="facbar__chip" type="button" data-fac-filter="ai" aria-pressed="false"><span class="facbar__group">Learn</span>AI Classes</button>
             <button class="facbar__chip" type="button" data-fac-filter="steam" aria-pressed="false"><span class="facbar__group">Learn</span>STEAM Lab</button>
-            <button class="facbar__chip" type="button" data-fac-filter="science" aria-pressed="false"><span class="facbar__group">Learn</span>Science Lab</button>
-            <button class="facbar__chip" type="button" data-fac-filter="robotics" aria-pressed="false"><span class="facbar__group">Learn</span>Robotics</button>
-            <button class="facbar__chip" type="button" data-fac-filter="artmusic" aria-pressed="false"><span class="facbar__group">Learn</span>Art &amp; Music Room</button>
-            <button class="facbar__chip" type="button" data-fac-filter="earlyyears" aria-pressed="false"><span class="facbar__group">Early Years</span>Early Years Classroom</button>
-            <button class="facbar__chip" type="button" data-fac-filter="playland" aria-pressed="false"><span class="facbar__group">Early Years</span>Early Years Play Area</button>
-            <button class="facbar__chip" type="button" data-fac-filter="basketball" aria-pressed="false"><span class="facbar__group">Play</span>Basketball Court</button>
+            <button class="facbar__chip" type="button" data-fac-filter="biz" aria-pressed="false"><span class="facbar__group">Speak</span>Biz Talk &amp; Dealathon</button>
+            <button class="facbar__chip" type="button" data-fac-filter="basketball" aria-pressed="false"><span class="facbar__group">Play</span>Basketball</button>
+            <button class="facbar__chip" type="button" data-fac-filter="adventure" aria-pressed="false"><span class="facbar__group">Play</span>Adventure Sports</button>
             <button class="facbar__chip" type="button" data-fac-filter="skating" aria-pressed="false"><span class="facbar__group">Play</span>Skating</button>
             <button class="facbar__chip" type="button" data-fac-filter="swimming" aria-pressed="false"><span class="facbar__group">Play</span>Swimming</button>
-            <button class="facbar__chip" type="button" data-fac-filter="climbing" aria-pressed="false"><span class="facbar__group">Play</span>Adventure Climbing</button>
+            <button class="facbar__chip" type="button" data-fac-filter="artmusic" aria-pressed="false"><span class="facbar__group">Create</span>Art &amp; Music</button>
         </div>
 
         <ul class="facs" data-facs>
-          <li class="fac fac--building">
-            <div class="fac__media" data-slot="hero-campus">
-              <img src="assets/img/hero-campus-800.webp" srcset="assets/img/hero-campus-480.webp 480w, assets/img/hero-campus-800.webp 800w, assets/img/hero-campus-1600.webp 1600w" sizes="(min-width: 1200px) 270px, (min-width: 640px) 50vw, 100vw" width="1536" height="1024" loading="lazy" decoding="async" alt="The Sloka International School building in Manneguda, its yellow facade glowing." style="--focus:50% 50%">
-              <span class="fac__num" aria-hidden="true">01</span>
-            </div>
+          <li class="fac fac--ai">
+            <div class="fac__media fac__media--ai" aria-hidden="true"><span class="fac__code">ask("why is the sky blue?")<i></i></span><span class="fac__num">01</span></div>
             <div class="fac__cap">
-              <p class="fac__group">Campus</p>
-              <h3 class="fac__title">The Campus Building</h3>
-              <p class="fac__text">The Sloka building in Manneguda, with its yellow and blue facade.</p>
+              <p class="fac__group">Learn</p>
+              <h3 class="fac__title">AI Classes</h3>
+              <p class="fac__text">Children learn how AI works, and how to think about it, from Stage 2.</p>
             </div>
           </li>
-          <li class="fac fac--classroom">
-            <div class="fac__media" data-slot="classroom">
-              <img src="assets/img/classroom-800.webp" srcset="assets/img/classroom-480.webp 480w, assets/img/classroom-800.webp 800w, assets/img/classroom-1600.webp 1600w" sizes="(min-width: 1200px) 270px, (min-width: 640px) 50vw, 100vw" width="1536" height="1024" loading="lazy" decoding="async" alt="A student teaching the class in front of a smart display, with classmates at their desks." style="--focus:50% 50%">
+          <li class="fac fac--steam">
+            <div class="fac__media" data-slot="science-lab">
+              <img src="assets/img/science-lab-800.webp" srcset="assets/img/science-lab-480.webp 480w, assets/img/science-lab-800.webp 800w, assets/img/science-lab-1600.webp 1600w" sizes="(min-width: 1200px) 270px, (min-width: 640px) 50vw, 100vw" width="1536" height="1024" loading="lazy" decoding="async" alt="A student in a lab coat holding up a flask of blue liquid in the Sloka science lab." style="--focus:50% 50%">
               <span class="fac__num" aria-hidden="true">02</span>
             </div>
             <div class="fac__cap">
               <p class="fac__group">Learn</p>
-              <h3 class="fac__title">Classrooms</h3>
-              <p class="fac__text">Flipped teaching: students present ideas and teach each other, with smart displays on the wall.</p>
+              <h3 class="fac__title">STEAM Lab</h3>
+              <p class="fac__text">Build it, wire it, test it, take it apart, build it better.</p>
             </div>
           </li>
-          <li class="fac fac--steam">
-            <div class="fac__media" data-slot="steam-lab">
-              <img src="assets/img/steam-lab-800.webp" srcset="assets/img/steam-lab-480.webp 480w, assets/img/steam-lab-800.webp 800w, assets/img/steam-lab-1600.webp 1600w" sizes="(min-width: 1200px) 270px, (min-width: 640px) 50vw, 100vw" width="1536" height="1024" loading="lazy" decoding="async" alt="Three students building a robot car in the STEAM lab." style="--focus:50% 50%">
+          <li class="fac fac--biz">
+            <div class="fac__media" data-slot="debate">
+              <img src="assets/img/debate-800.webp" srcset="assets/img/debate-480.webp 480w, assets/img/debate-800.webp 800w, assets/img/debate-1600.webp 1600w" sizes="(min-width: 1200px) 270px, (min-width: 640px) 50vw, 100vw" width="1536" height="864" loading="lazy" decoding="async" alt="Two students facing each other at podiums on the Dealathon stage." style="--focus:50% 50%">
               <span class="fac__num" aria-hidden="true">03</span>
             </div>
             <div class="fac__cap">
-              <p class="fac__group">Learn</p>
-              <h3 class="fac__title">STEAM Lab</h3>
-              <p class="fac__text">Students build, wire and test robots and gadgets together.</p>
-            </div>
-          </li>
-          <li class="fac fac--science">
-            <div class="fac__media" data-slot="science-lab">
-              <img src="assets/img/science-lab-800.webp" srcset="assets/img/science-lab-480.webp 480w, assets/img/science-lab-800.webp 800w, assets/img/science-lab-1600.webp 1600w" sizes="(min-width: 1200px) 270px, (min-width: 640px) 50vw, 100vw" width="1536" height="1024" loading="lazy" decoding="async" alt="A student in a lab coat holding up a flask of blue liquid in the Sloka science lab." style="--focus:50% 50%">
-              <span class="fac__num" aria-hidden="true">04</span>
-            </div>
-            <div class="fac__cap">
-              <p class="fac__group">Learn</p>
-              <h3 class="fac__title">Science Lab</h3>
-              <p class="fac__text">Hands-on experiments in the school science lab.</p>
-            </div>
-          </li>
-          <li class="fac fac--robotics">
-            <div class="fac__media" data-slot="robotics-young">
-              <img src="assets/img/robotics-young-800.webp" srcset="assets/img/robotics-young-480.webp 480w, assets/img/robotics-young-800.webp 800w, assets/img/robotics-young-1600.webp 1600w" sizes="(min-width: 1200px) 270px, (min-width: 640px) 50vw, 100vw" width="480" height="400" loading="lazy" decoding="async" alt="A young student building a small robot car from bricks." style="--focus:50% 40%">
-              <span class="fac__num" aria-hidden="true">05</span>
-            </div>
-            <div class="fac__cap">
-              <p class="fac__group">Learn</p>
-              <h3 class="fac__title">Robotics</h3>
-              <p class="fac__text">Young learners assemble small robot cars from building bricks.</p>
-            </div>
-          </li>
-          <li class="fac fac--artmusic">
-            <div class="fac__media" data-slot="art-music">
-              <img src="assets/img/art-music-800.webp" srcset="assets/img/art-music-480.webp 480w, assets/img/art-music-800.webp 800w, assets/img/art-music-1600.webp 1600w" sizes="(min-width: 1200px) 270px, (min-width: 640px) 50vw, 100vw" width="1536" height="1024" loading="lazy" decoding="async" alt="A student in the Sloka music room playing the keyboard, with a guitar and drums behind him." style="--focus:50% 50%">
-              <span class="fac__num" aria-hidden="true">06</span>
-            </div>
-            <div class="fac__cap">
-              <p class="fac__group">Learn</p>
-              <h3 class="fac__title">Art &amp; Music Room</h3>
-              <p class="fac__text">A music room with a keyboard, guitar and drums.</p>
-            </div>
-          </li>
-          <li class="fac fac--earlyyears">
-            <div class="fac__media" data-slot="early-years">
-              <img src="assets/img/early-years-800.webp" srcset="assets/img/early-years-480.webp 480w, assets/img/early-years-800.webp 800w, assets/img/early-years-1600.webp 1600w" sizes="(min-width: 1200px) 270px, (min-width: 640px) 50vw, 100vw" width="1536" height="1024" loading="lazy" decoding="async" alt="Smiling Early Years students building with colourful blocks under a "Play Explore Discover Grow" chalkboard." style="--focus:50% 50%">
-              <span class="fac__num" aria-hidden="true">07</span>
-            </div>
-            <div class="fac__cap">
-              <p class="fac__group">Early Years</p>
-              <h3 class="fac__title">Early Years Classroom</h3>
-              <p class="fac__text">Play, explore, discover, grow: little learners work with building blocks.</p>
-            </div>
-          </li>
-          <li class="fac fac--playland">
-            <div class="fac__media" data-slot="early-years-play">
-              <img src="assets/img/early-years-play-800.webp" srcset="assets/img/early-years-play-480.webp 480w, assets/img/early-years-play-800.webp 800w, assets/img/early-years-play-1600.webp 1600w" sizes="(min-width: 1200px) 270px, (min-width: 640px) 50vw, 100vw" width="1536" height="1024" loading="lazy" decoding="async" alt="A smiling Early Years student stacking wooden blocks while classmates play behind her." style="--focus:50% 50%">
-              <span class="fac__num" aria-hidden="true">08</span>
-            </div>
-            <div class="fac__cap">
-              <p class="fac__group">Early Years</p>
-              <h3 class="fac__title">Early Years Play Area</h3>
-              <p class="fac__text">Children stacking wooden blocks in a bright play space.</p>
+              <p class="fac__group">Speak</p>
+              <h3 class="fac__title">Biz Talk &amp; Dealathon</h3>
+              <p class="fac__text">Our student podcast with business leaders, and debates where students negotiate and decide.</p>
             </div>
           </li>
           <li class="fac fac--basketball">
             <div class="fac__media" data-slot="sports">
               <img src="assets/img/sports-800.webp" srcset="assets/img/sports-480.webp 480w, assets/img/sports-800.webp 800w, assets/img/sports-1600.webp 1600w" sizes="(min-width: 1200px) 270px, (min-width: 640px) 50vw, 100vw" width="1600" height="900" loading="lazy" decoding="async" alt="Students playing basketball on the school court." style="--focus:50% 50%">
-              <span class="fac__num" aria-hidden="true">09</span>
+              <span class="fac__num" aria-hidden="true">04</span>
             </div>
             <div class="fac__cap">
               <p class="fac__group">Play</p>
-              <h3 class="fac__title">Basketball Court</h3>
+              <h3 class="fac__title">Basketball</h3>
               <p class="fac__text">Students playing basketball on the school court.</p>
+            </div>
+          </li>
+          <li class="fac fac--adventure">
+            <div class="fac__media" data-slot="adventure-climbing">
+              <img src="assets/img/adventure-climbing-800.webp" srcset="assets/img/adventure-climbing-480.webp 480w, assets/img/adventure-climbing-800.webp 800w, assets/img/adventure-climbing-1600.webp 1600w" sizes="(min-width: 1200px) 270px, (min-width: 640px) 50vw, 100vw" width="1254" height="1254" loading="lazy" decoding="async" alt="A young student in a helmet and harness climbing the school's rock-climbing wall." style="--focus:50% 30%">
+              <span class="fac__num" aria-hidden="true">05</span>
+            </div>
+            <div class="fac__cap">
+              <p class="fac__group">Play</p>
+              <h3 class="fac__title">Adventure Sports</h3>
+              <p class="fac__text">A young student in a helmet and harness climbing the school's rock-climbing wall.</p>
             </div>
           </li>
           <li class="fac fac--skating">
             <div class="fac__media" data-slot="skating-karate">
               <img src="assets/img/skating-karate-800.webp" srcset="assets/img/skating-karate-480.webp 480w, assets/img/skating-karate-800.webp 800w, assets/img/skating-karate-1600.webp 1600w" sizes="(min-width: 1200px) 270px, (min-width: 640px) 50vw, 100vw" width="1536" height="1024" loading="lazy" decoding="async" alt="A young student roller skating in full safety gear." style="--focus:16% 50%">
-              <span class="fac__num" aria-hidden="true">10</span>
+              <span class="fac__num" aria-hidden="true">06</span>
             </div>
             <div class="fac__cap">
               <p class="fac__group">Play</p>
               <h3 class="fac__title">Skating</h3>
-              <p class="fac__text">Roller skating in full safety gear.</p>
+              <p class="fac__text">A young student roller skating in full safety gear.</p>
             </div>
           </li>
           <li class="fac fac--swimming">
             <div class="fac__media" data-slot="swimming">
               <img src="assets/img/swimming-800.webp" srcset="assets/img/swimming-480.webp 480w, assets/img/swimming-800.webp 800w, assets/img/swimming-1600.webp 1600w" sizes="(min-width: 1200px) 270px, (min-width: 640px) 50vw, 100vw" width="1536" height="1024" loading="lazy" decoding="async" alt="Young students in swimming caps and goggles learning to swim with kickboards." style="--focus:50% 50%">
-              <span class="fac__num" aria-hidden="true">11</span>
+              <span class="fac__num" aria-hidden="true">07</span>
             </div>
             <div class="fac__cap">
               <p class="fac__group">Play</p>
               <h3 class="fac__title">Swimming</h3>
-              <p class="fac__text">Young swimmers in caps and goggles learning with kickboards.</p>
+              <p class="fac__text">Young students in swimming caps and goggles learning to swim with kickboards.</p>
             </div>
           </li>
-          <li class="fac fac--climbing">
-            <div class="fac__media" data-slot="adventure-climbing">
-              <img src="assets/img/adventure-climbing-800.webp" srcset="assets/img/adventure-climbing-480.webp 480w, assets/img/adventure-climbing-800.webp 800w, assets/img/adventure-climbing-1600.webp 1600w" sizes="(min-width: 1200px) 270px, (min-width: 640px) 50vw, 100vw" width="1254" height="1254" loading="lazy" decoding="async" alt="A young student in a helmet and harness climbing the school's rock-climbing wall." style="--focus:50% 30%">
-              <span class="fac__num" aria-hidden="true">12</span>
+          <li class="fac fac--artmusic">
+            <div class="fac__media" data-slot="art-music">
+              <img src="assets/img/art-music-800.webp" srcset="assets/img/art-music-480.webp 480w, assets/img/art-music-800.webp 800w, assets/img/art-music-1600.webp 1600w" sizes="(min-width: 1200px) 270px, (min-width: 640px) 50vw, 100vw" width="1536" height="1024" loading="lazy" decoding="async" alt="A student in the Sloka music room playing the keyboard, with a guitar and drums behind him." style="--focus:50% 50%">
+              <span class="fac__num" aria-hidden="true">08</span>
             </div>
             <div class="fac__cap">
-              <p class="fac__group">Play</p>
-              <h3 class="fac__title">Adventure Climbing</h3>
-              <p class="fac__text">A rock-climbing wall, climbed in helmets and harnesses.</p>
+              <p class="fac__group">Create</p>
+              <h3 class="fac__title">Art &amp; Music</h3>
+              <p class="fac__text">A student in the Sloka music room playing the keyboard, with a guitar and drums behind him.</p>
             </div>
           </li>
         </ul>
