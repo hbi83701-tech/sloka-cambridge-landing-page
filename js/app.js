@@ -10,11 +10,9 @@ import { runLoader } from './modules/loader.js';
 import { spark } from './modules/spark.js';
 import { initHero, heroIntro } from './modules/hero.js';
 import { initCompasses } from './modules/compass.js';
-import { initCampus } from './modules/campus.js';
+import { initTk } from './modules/tk.js';
 import { initApproach } from './modules/approach.js';
-import { initBento } from './modules/bento.js';
 import { initReasons } from './modules/reasons.js';
-import { initFees } from './modules/fees.js';
 import { initJourney } from './modules/journey.js';
 import { initOrbitMap, initMapEmbed } from './modules/orbit-map.js';
 import { initBgMorph, initTextReveals, initImageReveals, initSkew, initChrome, initFooter } from './modules/motion.js';
@@ -72,9 +70,9 @@ if (!env.hasLibs) {
     if (setUp) return;
     setUp = true;
     const steps = [
-      initCampus,
+      initTk,               // gallery doorway, facilities, grades and fees (ported from Tukkuguda)
       initApproach,
-      initBento, initReasons, initFees,
+      initReasons,
       initOrbitMap, initMapEmbed, initJourney, initImageReveals, initSkew, initChrome, initFooter
     ];
     for (const step of steps) {

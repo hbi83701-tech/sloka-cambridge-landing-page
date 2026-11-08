@@ -60,3 +60,14 @@ window.SLOKA_SITE = {
     { name: 'Meerpet', angle: 275, ring: 2, mins: [25, 30] }
   ]
 };
+
+/* Grades & fees section: yearly tuition fee and parent testimonial for each grade.
+   Keys are the grade names shown on the page (Nursery, LKG, UKG, Grade 1 ... Grade 12).
+   FEES:   'Grade 1': [120000]            a single yearly amount in rupees
+           'Grade 2': [120000, 135000]    or a range [lowest, highest]
+   VOICES: 'Grade 1': [{ quote: '...', name: 'Parent name', parent: 'Parent of a Grade 1 student', area: 'Area', topic: 'Grade 1' }]
+   A grade with no entry shows a "to be confirmed" note. Both start empty on purpose. */
+window.SLOKA_GRADES = {
+  FEES: {},
+  VOICES: {}
+};

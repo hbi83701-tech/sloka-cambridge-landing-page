@@ -1,0 +1,1197 @@
+/* Sections ported from the Tukkuguda landing page (gallery, facilities, grades & fees).
+   Every rule is scoped under .tk so nothing here can touch the rest of the Manneguda page.
+   Generated from the Tukkuguda stylesheet; edit freely. */
+
+/* 1. Tokens
+   ========================================================================== */
+.tk {
+  /* Brand (exact values) */
+  --yellow: #F9C212;
+  --orange: #E87724;
+  --maroon: #971B1E;
+  --ink: #1A1110;
+  --paper: #FBF5E9;
+  --rule: #E9DFCB;
+
+  /* Supporting shades */
+  --maroon-deep: #7A1518;
+  --sand: #F4EAD6;
+  --ink-soft: #4A3B37;      /* 9.6:1 on paper */
+  --white: #FFFFFF;
+  --field-border: #8A7D70;  /* 3.9:1 on white */
+  --whatsapp: #0F7A3E;      /* 5.4:1 with white text */
+
+  --serif: "Young Serif", Georgia, "Times New Roman", serif;
+  --sans: "Mukta", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  --pad: 20px;
+  --header-h: 62px;
+  --bar-h: 58px;
+  --radius: 14px;
+  --shadow: 4px 4px 0 var(--ink);
+}
+
+@media (min-width: 760px) {
+  .tk { --pad: 40px; --header-h: 74px; }
+}
+
+
+/* 2. Base and utilities
+   ========================================================================== */
+.tk *,
+.tk *::before,
+.tk *::after { box-sizing: border-box; }
+
+.tk { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .tk { scroll-behavior: smooth; }
+}
+
+.tk {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--sans);
+  overflow-x: clip;
+}
+@media (min-width: 760px) {
+  .tk { font-size: 1.125rem; }
+}
+
+.tk img,
+.tk svg { display: block; max-width: 100%; }
+
+.tk h1,
+.tk h2,
+.tk h3,
+.tk h4 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.12;
+  color: var(--maroon);
+  text-wrap: balance;
+}
+
+.tk p { margin: 0 0 1em; }
+.tk p:last-child { margin-bottom: 0; }
+.tk a { color: inherit; }
+.tk strong { font-weight: 700; }
+
+.tk :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.tk [hidden] { display: none !important; }
+
+.tk .wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+.tk .visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.tk .skip-link {
+  position: absolute;
+  left: 12px; top: -100px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 700;
+  text-decoration: none;
+}
+.tk .skip-link:focus { top: 12px; }
+
+.tk .break { overflow-wrap: anywhere; }
+
+/* Placeholder chip: anything in square brackets that still needs the school's input */
+.tk .tbc {
+  display: inline-block;
+  padding: 0 6px;
+  border: 1px dashed var(--orange);
+  border-radius: 3px;
+  background: #FFF0C2;
+  color: var(--ink);
+  font: 700 0.72rem/1.6 var(--sans);
+  letter-spacing: 0.03em;
+  vertical-align: middle;
+}
+
+.tk .only-narrow { display: none; }
+@media (max-width: 559px) {
+  .tk .only-wide { display: none; }
+  .tk .only-narrow { display: inline; }
+}
+
+.tk .icon { width: 20px; height: 20px; fill: currentColor; flex: none; }
+
+.tk .hl {
+  background: linear-gradient(transparent 62%, var(--yellow) 62%, var(--yellow) 92%, transparent 92%);
+  padding: 0 0.04em;
+}
+
+
+/* 3. Buttons, chips, tags
+   ========================================================================== */
+.tk .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 4px 26px 0;      /* Mukta sits slightly high; nudges text to optical centre */
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  box-shadow: 3px 3px 0 var(--ink);
+  font: 700 1.03rem/1.1 var(--sans);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.12s ease, box-shadow 0.12s ease;
+}
+.tk .btn .icon { margin-top: -4px; }
+.tk .btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+
+.tk .btn--yellow { background: var(--yellow); color: var(--ink); }
+.tk .btn--yellow:hover { background: var(--orange); }
+.tk .btn--maroon { background: var(--maroon); color: var(--paper); }
+.tk .btn--maroon:hover { background: var(--yellow); color: var(--ink); }
+.tk .btn--ink { background: var(--ink); color: var(--paper); }
+.tk .btn--ink:hover { background: var(--maroon); }
+.tk .btn--whatsapp { background: var(--whatsapp); color: #fff; }
+.tk .btn--whatsapp:hover { background: var(--ink); }
+.tk .btn--outline { background: transparent; color: var(--ink); }
+.tk .btn--outline:hover { background: var(--ink); color: var(--paper); }
+
+.tk .btn--sm {
+  min-height: 44px;
+  padding: 3px 18px 0;
+  font-size: 0.97rem;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.tk .btn--block { width: 100%; }
+.tk .btn[disabled] { cursor: progress; opacity: 0.75; }
+
+.tk .text-link {
+  font-weight: 700;
+  color: var(--maroon);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--yellow);
+}
+.tk .text-link:hover { text-decoration-color: var(--maroon); }
+
+/* Small programme / space tags */
+.tk .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.tk .tags li {
+  padding: 3px 12px 1px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--white);
+  font-size: 0.86rem;
+  font-weight: 500;
+}
+
+/* Tick list */
+.tk .checks { margin: 0; padding: 0; list-style: none; }
+.tk .checks li {
+  position: relative;
+  padding: 4px 0 4px 32px;
+}
+.tk .checks li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--yellow);
+  border: 1.5px solid var(--ink);
+}
+.tk .checks li::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 12px;
+  width: 6px;
+  height: 10px;
+  border-right: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  transform: rotate(45deg);
+}
+
+
+/* 4. Section scaffolding
+   ========================================================================== */
+.tk .section { padding: 72px 0; }
+@media (min-width: 760px) {
+  .tk .section { padding: 104px 0; }
+}
+.tk .section--sand { background: var(--sand); }
+.tk .section--maroon { background: var(--maroon); color: var(--paper); }
+.tk .section--maroon h2,
+.tk .section--maroon h3 { color: var(--paper); }
+
+.tk .section-head { max-width: 760px; margin-bottom: 40px; }
+@media (min-width: 760px) {
+  .tk .section-head { margin-bottom: 56px; }
+}
+
+.tk .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  font: 700 0.8rem/1 var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--maroon);
+}
+.tk .eyebrow::before {
+  content: "";
+  width: 30px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--yellow);
+}
+.tk .eyebrow--light { color: var(--yellow); }
+
+.tk .section-head h2 {
+  font-size: clamp(2rem, 1.3rem + 2.8vw, 3.3rem);
+}
+
+.tk .section-lead {
+  margin-top: 16px;
+  font-size: 1.18rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.tk .section-lead a { font-weight: 700; color: var(--maroon); }
+@media (min-width: 760px) {
+  .tk .section-lead { font-size: 1.3rem; }
+}
+
+
+/* 5. Photos and placeholders
+   ========================================================================== */
+.tk .photo {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: var(--ar, 4 / 3);
+  border-radius: var(--radius);
+  background-color: #EADFC9;
+  background-image: repeating-linear-gradient(135deg, rgba(26, 17, 16, 0.06) 0 1px, transparent 1px 12px);
+}
+/* Visible slot name until the real photo is uploaded */
+.tk .photo::after {
+  content: "[PHOTO: " attr(data-slot) "]";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  font: 700 0.74rem/1.3 var(--sans);
+  letter-spacing: 0.08em;
+  color: #5E5048;
+  text-align: center;
+}
+.tk .photo img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--focus, 50% 50%);
+}
+.tk .photo img.img-missing { display: none; }
+
+/* Arch frame, like a school doorway */
+.tk .arch { border-radius: 999px 999px var(--radius) var(--radius); }
+
+
+/* 5b. Signature moment: "Step inside" doorway
+   Static by default (a full-width photo with its caption). main.js adds
+   .doorway--live, which pins the stage and opens the arch as the page scrolls.
+   ========================================================================== */
+.tk .doorway {
+  position: relative;
+  background: var(--paper);
+  border-top: 2px solid var(--ink);
+}
+.tk .doorway__stage { position: relative; display: flex; flex-direction: column; }
+.tk .doorway__title { order: -1; }
+.tk .doorway__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--ink);
+}
+@media (max-width: 759px) {
+  .tk .doorway__frame { aspect-ratio: 4 / 5; }
+}
+.tk .doorway__frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 60%;
+}
+/* Ink shade at the bottom so the caption stays readable on any photo */
+.tk .doorway__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(26, 17, 16, 0) 25%, rgba(26, 17, 16, 0.55) 55%, rgba(26, 17, 16, 0.88) 100%);
+}
+
+.tk .doorway__title {
+  padding: 40px var(--pad) 24px;
+  font-size: clamp(2.2rem, 1.2rem + 4.4vw, 5rem);
+  line-height: 1;
+  text-align: center;
+}
+.tk .doorway__word { display: block; }
+.tk .doorway__word--b { color: var(--ink); }
+.tk .doorway__hint { display: none; }
+
+.tk .doorway__reveal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 0 var(--pad) 40px;
+  color: var(--paper);
+  text-align: center;
+}
+.tk .doorway__line {
+  max-width: 34ch;
+  margin: 0 auto 18px;
+  font: 400 clamp(1.25rem, 1rem + 1.4vw, 2rem)/1.3 var(--serif);
+}
+.tk .doorway__facts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+}
+.tk .doorway__facts li {
+  padding: 4px 14px 2px;
+  border: 1.5px solid var(--paper);
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 0.92rem;
+}
+.tk .doorway .btn--yellow { box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5); }
+.tk .doorway :focus-visible { outline-color: var(--yellow); }
+
+/* Live version: the scroll distance is the "walk" through the doors */
+.tk .doorway--live .doorway__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+.tk .doorway--live .doorway__frame {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+  clip-path: inset(var(--ct, 0px) var(--cs, 0px) var(--cb, 0px) var(--cs, 0px) round var(--cr, 0px) var(--cr, 0px) 0 0);
+  will-change: clip-path;
+}
+.tk .doorway--live .doorway__frame img {
+  transform: scale(var(--zoom, 1));
+  transform-origin: 50% 65%;
+  will-change: transform;
+}
+.tk .doorway--live .doorway__shade { opacity: var(--ro, 0); }
+
+/* The two words sit beside the doorway and get pushed apart as it opens */
+.tk .doorway--live .doorway__title { position: static; padding: 0; }
+.tk .doorway--live .doorway__word {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  translate: 0 -50%;
+  width: min-content;          /* one word per line: "Step / inside", "Sloka / Tukkuguda" */
+  font-size: clamp(2.6rem, 4.6vw, 5rem);
+  opacity: var(--wo, 1);
+}
+.tk .doorway--live .doorway__word--a { right: calc(100% - var(--cs, 0px) + 32px); text-align: right; }
+.tk .doorway--live .doorway__word--b { left: calc(100% - var(--cs, 0px) + 32px); text-align: left; }
+
+.tk .doorway--live .doorway__hint {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--cb, 0px) - 34px);
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ink-soft);
+  opacity: var(--wo, 1);
+}
+.tk .doorway--live .doorway__reveal {
+  opacity: var(--ro, 0);
+  translate: 0 calc((1 - var(--ro, 0)) * 24px);
+  visibility: var(--rv, hidden);
+}
+.tk .doorway--live .doorway__reveal:focus-within { opacity: 1; visibility: visible; }
+
+/* Phones: words above and below the doorway instead of beside it */
+@media (max-width: 759px) {
+  .tk .doorway--live .doorway__word {
+    left: 0;
+    right: 0;
+    width: auto;
+    white-space: nowrap;
+    translate: none;
+    text-align: center;
+    font-size: clamp(2rem, 9vw, 2.8rem);
+  }
+  .tk .doorway--live .doorway__word--a { top: auto; bottom: calc(100% - var(--ct, 0px) + 14px); }
+  .tk .doorway--live .doorway__word--b { top: calc(100% - var(--cb, 0px) + 14px); }
+  .tk .doorway--live .doorway__hint { display: none; }
+  /* Clear the Call / WhatsApp bar */
+  .tk .doorway--live .doorway__reveal { padding-bottom: calc(var(--bar-h) + 28px); }
+}
+
+
+/* Campus story slides (inside the doorway scene)
+   Static: a column of full-width photos with captions.
+   Live: each slide rises from the bottom with an arched top edge as the page scrolls,
+   settling from a slight zoom; the one beneath eases back and darkens.
+   main.js sets --t (rise), --o (being covered), --c (caption) and --v per slide. */
+.tk .doorway__slide {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--ink);
+}
+@media (max-width: 759px) {
+  .tk .doorway__slide { aspect-ratio: 4 / 5; }
+}
+.tk .doorway__slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--focus, 50% 50%);
+}
+/* Shade under the caption */
+.tk .doorway__slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(26, 17, 16, 0.82) 0%, rgba(26, 17, 16, 0.35) 38%, rgba(26, 17, 16, 0) 62%);
+}
+.tk .doorway__cap {
+  position: absolute;
+  left: var(--pad);
+  right: var(--pad);
+  bottom: 32px;
+  z-index: 2;
+  max-width: 560px;
+  color: var(--paper);
+}
+.tk .doorway__count {
+  margin-bottom: 8px;
+  font: 700 0.8rem/1 var(--sans);
+  letter-spacing: 0.18em;
+  color: var(--yellow);
+}
+.tk .doorway__cap-title {
+  margin-bottom: 8px;
+  font-size: clamp(2rem, 1.3rem + 3vw, 3.6rem);
+  color: var(--paper);
+}
+.tk .doorway__cap p:not(.doorway__count) { font-size: 1.08rem; line-height: 1.5; }
+.tk .doorway__cap .btn { margin-top: 18px; box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5); }
+@media (min-width: 960px) {
+  .tk .doorway__cap { left: max(var(--pad), calc((100vw - 1200px) / 2 + var(--pad))); bottom: 56px; }
+}
+.tk .doorway__dots { display: none; }
+
+/* Live: the slides stack over the opened doorway */
+.tk .doorway--live { height: calc(100vh * (3.2 + var(--n, 6) * 0.8)); }
+.tk .doorway--live .doorway__slide {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  aspect-ratio: auto;
+  visibility: var(--v, hidden);
+  clip-path: inset(calc((1 - var(--t, 0)) * 100%) 0 0 0 round calc((1 - var(--t, 0)) * 50vw) calc((1 - var(--t, 0)) * 50vw) 0 0);
+  will-change: clip-path;
+}
+.tk .doorway--live .doorway__slide img {
+  transform: scale(calc((1.15 - 0.15 * var(--t, 0)) * (1 - 0.06 * var(--o, 0))));
+  will-change: transform;
+}
+/* Darkens a slide as the next one covers it */
+.tk .doorway--live .doorway__slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: var(--ink);
+  opacity: calc(var(--o, 0) * 0.55);
+  pointer-events: none;
+}
+.tk .doorway--live .doorway__cap {
+  opacity: var(--c, 0);
+  translate: 0 calc((1 - var(--c, 0)) * 28px);
+}
+.tk .doorway--live .doorway__slide:last-of-type .doorway__cap:focus-within { opacity: 1; }
+
+.tk .doorway--live .doorway__dots {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  translate: 0 -50%;
+  opacity: var(--dots, 0);
+}
+.tk .doorway__dots li {
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid var(--paper);
+  border-radius: 999px;
+  background: rgba(26, 17, 16, 0.3);
+  transition: height 0.3s ease, background-color 0.3s ease;
+}
+.tk .doorway__dots li.is-on { height: 26px; background: var(--yellow); border-color: var(--yellow); }
+
+@media (max-width: 759px) {
+  .tk .doorway--live .doorway__cap { bottom: calc(var(--bar-h) + 28px); }
+  .tk .doorway--live .doorway__dots { right: 10px; }
+}
+
+/* 10. Facilities: a tidy grid of photo cards
+   Every card has the same shape: a photo on top and the name and a short description below,
+   so no text sits on a photo. The last card (CCTV) runs the full width.
+   A photo that is not uploaded yet shows a maroon block with its file name.
+   ========================================================================== */
+.tk .facs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 640px) {
+  .tk .facs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+  .tk .fac--wide { grid-column: 1 / -1; }
+}
+@media (min-width: 1200px) {
+  .tk .facs { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+}
+
+.tk .fac {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--white);
+  transition: translate 0.25s ease, box-shadow 0.25s ease;
+}
+.tk .fac:hover { translate: -3px -3px; box-shadow: 6px 6px 0 var(--ink); }
+
+.tk .fac__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-bottom: 2px solid var(--ink);
+  background-color: var(--maroon-deep);
+  background-image: repeating-linear-gradient(135deg, rgba(251, 245, 233, 0.07) 0 1px, transparent 1px 14px);
+}
+.tk .fac__media > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--focus, 50% 50%);
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.tk .fac:hover .fac__media > img { transform: scale(1.05); }
+
+.tk .fac img.img-missing { display: none; }
+.tk .fac__media:has(> img.img-missing)::after {
+  content: "[PHOTO: " attr(data-slot) "]";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  font: 700 0.74rem/1.3 var(--sans);
+  letter-spacing: 0.08em;
+  color: rgba(251, 245, 233, 0.75);
+}
+
+.tk .fac__num {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 3px 10px 1px;
+  border: 1.5px solid rgba(251, 245, 233, 0.75);
+  border-radius: 999px;
+  background: rgba(26, 17, 16, 0.62);
+  color: var(--paper);
+  font: 400 0.9rem/1.3 var(--serif);
+  letter-spacing: 0.06em;
+}
+
+.tk .fac__cap { display: flex; flex-direction: column; flex: 1; padding: 18px 20px 22px; }
+.tk .fac__group {
+  align-self: flex-start;
+  margin: 0 0 10px;
+  padding: 3px 10px 1px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--yellow);
+  color: var(--ink);
+  font: 700 0.7rem/1.3 var(--sans);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.tk .fac__title { margin: 0 0 8px; font-size: 1.3rem; line-height: 1.2; color: var(--maroon); }
+.tk .fac__text { margin: 0; font-size: 1rem; line-height: 1.55; color: var(--ink-soft); }
+
+/* The full-width card, and a single space picked from the bar: photo beside the text */
+@media (min-width: 1000px) {
+  .tk .fac--wide,
+.tk .facs--single .fac { flex-direction: row; }
+  .tk .fac--wide .fac__media,
+.tk .facs--single .fac .fac__media {
+    flex: 0 0 58%;
+    aspect-ratio: auto;
+    min-height: 320px;
+    border-bottom: 0;
+    border-right: 2px solid var(--ink);
+  }
+  .tk .fac--wide .fac__cap,
+.tk .facs--single .fac .fac__cap { justify-content: center; padding: 32px 36px; }
+  .tk .fac--wide .fac__title,
+.tk .facs--single .fac .fac__title { font-size: 1.9rem; }
+  .tk .fac--wide .fac__text,
+.tk .facs--single .fac .fac__text { font-size: 1.1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tk .fac,
+.tk .fac__media > img,
+.tk .facbar__chip { transition: none; }
+  .tk .fac--enter { animation: none; }
+}
+
+/* Sideways bar: pick one space, or "All" for the mosaic */
+.tk .facbar {
+  display: flex;
+  gap: 10px;
+  margin: 0 calc(-1 * var(--pad)) 22px;
+  padding: 4px var(--pad) 14px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: var(--maroon) var(--rule);
+}
+.tk .facbar::-webkit-scrollbar { height: 8px; }
+.tk .facbar::-webkit-scrollbar-track { background: var(--rule); border-radius: 999px; }
+.tk .facbar::-webkit-scrollbar-thumb { background: var(--maroon); border-radius: 999px; }
+@media (min-width: 1240px) {
+  .tk .facbar { margin-inline: 0; padding-inline: 2px; }
+}
+.tk .facbar__chip {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 9px 18px 8px;
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  background: var(--white);
+  color: var(--ink);
+  font: 700 1rem/1.2 var(--sans);
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  scroll-snap-align: start;
+  transition: background-color 0.2s ease, color 0.2s ease, translate 0.2s ease, box-shadow 0.2s ease;
+}
+.tk .facbar__group {
+  font: 700 0.68rem/1.3 var(--sans);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--maroon);
+}
+.tk .facbar__chip:hover { background: var(--yellow); translate: -1px -1px; box-shadow: 3px 3px 0 var(--ink); }
+.tk .facbar__chip[aria-pressed="true"] { background: var(--maroon); color: var(--paper); box-shadow: 3px 3px 0 var(--ink); }
+.tk .facbar__chip[aria-pressed="true"] .facbar__group { color: var(--yellow); }
+
+/* One space picked: it fills the row (see the card rules above) */
+.tk .facs--single { grid-template-columns: minmax(0, 1fr); }
+.tk .fac[hidden] { display: none; }
+.tk .fac--enter { animation: tk-fac-in 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes tk-fac-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.985); }
+  to   { opacity: 1; transform: none; }
+}
+
+.tk .facs__cta { margin: 36px 0 0; text-align: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tk .fac,
+.tk .fac > img,
+.tk .fac__split,
+.tk .fac__text,
+.tk .facbar__chip { transition: none; }
+  .tk .fac--enter { animation: none; }
+}
+
+
+/* 11. Model 1: grade finder
+   ========================================================================== */
+.tk .finder__controls {
+  display: grid;
+  gap: 26px;
+  padding: 22px 18px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+@media (min-width: 760px) {
+  .tk .finder__controls { padding: 28px 30px; }
+}
+@media (min-width: 1040px) {
+  .tk .finder__controls { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; }
+  .tk .agecheck { padding-left: 40px; border-left: 2px dashed var(--rule); }
+}
+
+.tk .finder__grades { margin: 0; padding: 0; border: 0; min-width: 0; }
+.tk .finder__label {
+  display: block;
+  margin-bottom: 12px;
+  padding: 0;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.tk .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.tk .chip { position: relative; cursor: pointer; }
+.tk .chip input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.tk .chip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 3px 15px 0;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  font-weight: 500;
+  font-size: 0.97rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.tk .chip:hover span { background: #FFF4D1; }
+.tk .chip input:checked + span { background: var(--maroon); color: var(--paper); }
+.tk .chip input:focus-visible + span { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+.tk .agecheck__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) auto;
+  gap: 8px;
+}
+.tk .agecheck__row .field__input { min-height: 44px; padding-top: 8px; padding-bottom: 6px; }
+@media (max-width: 479px) {
+  .tk .agecheck__row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .tk .agecheck__row .btn { grid-column: 1 / -1; width: 100%; }
+}
+.tk .agecheck__result {
+  margin: 14px 0 0;
+  padding: 10px 14px 8px;
+  border-radius: 10px;
+  background: #FFF4D1;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+.tk .agecheck__result strong { color: var(--maroon); }
+.tk .agecheck__note { margin: 10px 0 0; font-size: 0.84rem; line-height: 1.45; color: var(--ink-soft); }
+
+/* Grade sheet: everything for the chosen grade in one card
+   A coloured band names the grade (yellow, orange or maroon by stage). Below it,
+   the stage on the left; the grade's fee range and parent voice on the right.
+   --------------------------------------------------------------------------- */
+.tk .gsheet {
+  margin-top: 28px;
+  --stage-colour: var(--yellow);
+  --on-stage: var(--ink);
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+.tk .gsheet[data-stage="primary"] { --stage-colour: var(--orange); }
+.tk .gsheet[data-stage="middle"] { --stage-colour: var(--maroon); --on-stage: var(--paper); }
+.tk .gsheet[data-stage="secondary"] { --stage-colour: var(--ink); --on-stage: var(--paper); }
+
+.tk .gsheet__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding: 20px 20px 16px;
+  border-bottom: 2px solid var(--ink);
+  background: var(--stage-colour);
+  color: var(--on-stage);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+@media (min-width: 760px) {
+  .tk .gsheet__head { padding: 26px 34px 20px; }
+}
+.tk .gsheet__stage {
+  margin: 0 0 4px;
+  font: 700 0.8rem/1.3 var(--sans);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.tk .gsheet__grade {
+  margin: 0;
+  font-size: clamp(2.2rem, 1.5rem + 3vw, 3.8rem);
+  line-height: 1;
+  color: inherit;
+}
+.tk .gsheet__age {
+  margin: 0;
+  padding: 5px 14px 3px;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  font: 700 0.85rem/1.3 var(--sans);
+}
+.tk .gsheet__age:empty { display: none; }
+
+.tk .gsheet__body { display: grid; }
+@media (min-width: 1040px) {
+  .tk .gsheet__body { grid-template-columns: minmax(0, 1fr) 360px; }
+}
+
+/* Stage panels sit flat inside the sheet */
+.tk .stages { display: block; }
+.tk .stage {
+  display: grid;
+  gap: 24px;
+  padding: 24px 20px;
+}
+/* Photo and booking buttons make one column; on narrower screens they flow as separate blocks */
+.tk .stage__media { display: contents; }
+.tk .stage__photo { order: 1; }
+.tk .stage__body { order: 2; }
+.tk .stage__media .stage__cta { order: 3; margin-top: 0; }
+@media (min-width: 760px) {
+  .tk .stage { grid-template-columns: 220px minmax(0, 1fr); gap: 28px 32px; padding: 32px 34px; align-items: start; }
+  .tk .stage__photo { grid-column: 1; grid-row: 1; }
+  .tk .stage__body { grid-column: 2; grid-row: 1; }
+  .tk .stage__media .stage__cta { grid-column: 1 / -1; grid-row: 2; }
+}
+@media (min-width: 1040px) {
+  .tk .stage { grid-template-columns: 250px minmax(0, 1fr); gap: 36px; padding: 36px; align-items: stretch; }
+  .tk .stage__media { display: flex; flex-direction: column; gap: 28px; grid-column: 1; grid-row: 1; }
+  .tk .stage__photo,
+.tk .stage__body { order: 0; grid-column: auto; grid-row: auto; }
+  .tk .stage__body { grid-column: 2; }
+  .tk .stage__photo { flex: 1; display: flex; max-width: none; min-height: 300px; }
+  .tk .stage__photo .photo { flex: 1; height: auto; aspect-ratio: auto; }
+  .tk .stage__media .stage__cta { grid-column: auto; grid-row: auto; flex-direction: column; align-items: stretch; gap: 14px; margin-top: 0; }
+  .tk .stage__media .stage__cta .btn { justify-content: center; }
+  .tk .stage__media .stage__cta .text-link { text-align: center; }
+}
+.tk .stage__photo { position: relative; max-width: 240px; }
+.tk .stage__photo .photo { border: 2px solid var(--ink); }
+.tk .stage__photo::before {
+  content: "";
+  position: absolute;
+  right: -14px;
+  top: -12px;
+  width: 46%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--stage-colour, var(--yellow));
+}
+.tk .stage--primary { --stage-colour: var(--orange); }
+.tk .stage--middle { --stage-colour: var(--maroon); }
+.tk .stage--secondary { --stage-colour: var(--ink); }
+@media (max-width: 759px) {
+  .tk .stage__photo { max-width: 150px; }
+}
+
+.tk .stage__tag {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 4px 12px 2px;
+  border-radius: 999px;
+  background: var(--stage-colour, var(--yellow));
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.tk .stage--middle .stage__tag,
+.tk .stage--secondary .stage__tag { color: var(--paper); }
+.tk .stage__title { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); margin-bottom: 14px; }
+.tk .stage__title span {
+  display: block;
+  margin-top: 6px;
+  font: 700 0.85rem/1.2 var(--sans);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.tk .stage__body > p { color: var(--ink-soft); }
+.tk .stage__subhead { margin: 20px 0 8px; font-size: 1.1rem; color: var(--ink); }
+.tk .stage__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 24px;
+  margin-top: 24px;
+}
+
+/* Side column: fee range and parent voice for the chosen grade */
+.tk .gsheet__side {
+  display: grid;
+  align-content: stretch;
+  gap: 26px;
+  padding: 24px 20px 28px;
+  border-top: 2px dashed var(--rule);
+  background: var(--paper);
+}
+@media (min-width: 760px) {
+  .tk .gsheet__side { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); padding: 30px 34px 34px; }
+}
+@media (min-width: 1040px) {
+  .tk .gsheet__side { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; padding: 36px 30px; border-top: 0; border-left: 2px dashed var(--rule); }
+}
+
+.tk .fee {
+  position: relative;
+  overflow: hidden;
+  padding: 22px 22px 20px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: var(--maroon);
+  color: var(--paper);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.tk .fee::after {
+  content: "";
+  position: absolute;
+  right: -28px;
+  top: -28px;
+  width: 80px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--yellow);
+  opacity: 0.9;
+}
+.tk .fee > * { position: relative; z-index: 1; }
+.tk .fee__label {
+  max-width: 80%;
+  margin: 0 0 2px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--yellow);
+}
+.tk .fee__for { margin: 0 0 12px; font: 400 1.1rem/1.25 var(--serif); }
+.tk .fee__amount { margin: 0 0 12px; font: 400 clamp(1.5rem, 1.2rem + 1vw, 1.95rem)/1.15 var(--serif); }
+.tk .fee__amount small { display: block; margin-top: 4px; font: 500 0.88rem/1.3 var(--sans); color: rgba(251, 245, 233, 0.85); }
+.tk .fee__prompt { font: 500 1rem/1.4 var(--sans); }
+.tk .fee__note { margin: 0; font-size: 0.85rem; line-height: 1.45; color: rgba(251, 245, 233, 0.9); }
+.tk .fee__note strong { font-weight: 700; color: var(--paper); }
+.tk .fee .tbc { font-size: 0.82rem; }
+
+.tk .voice { display: flex; flex-direction: column; }
+.tk .voice__title { margin-bottom: 12px; font-size: 1.3rem; }
+.tk .voice__for { margin: -6px 0 12px; font-size: 0.92rem; font-weight: 500; color: var(--ink-soft); }
+.tk .voice__for:empty { display: none; }
+.tk .voice__list { display: flex; flex-direction: column; flex: 1; gap: 14px; }
+.tk .voice__card {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 20px 20px 16px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: var(--white);
+  animation: panel-in 0.35s ease both;
+}
+.tk .voice__card::before {
+  content: "\201C";
+  position: absolute;
+  top: 6px;
+  right: 16px;
+  font: 400 4.5rem/1 var(--serif);
+  color: var(--yellow);
+  -webkit-text-stroke: 1.5px var(--ink);
+  pointer-events: none;
+}
+.tk .voice__topic {
+  align-self: flex-start;
+  margin-bottom: 12px;
+  padding: 3px 10px 1px;
+  border-radius: 999px;
+  background: var(--yellow);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.tk .voice__card blockquote { flex: 1; margin: 0 0 14px; }
+.tk .voice__card blockquote p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+  font: 400 1rem/1.55 var(--serif);
+}
+.tk .voice__card.is-open blockquote p { display: block; -webkit-line-clamp: unset; }
+.tk .voice__more {
+  align-self: flex-start;
+  margin: -6px 0 12px;
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  font: 700 0.88rem/1.2 var(--sans);
+  color: var(--maroon);
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.tk .voice__top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.tk .voice__top .voice__topic { margin-bottom: 0; }
+.tk .voice__pager { display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 700; color: var(--ink-soft); }
+.tk .voice__card--paged::before { display: none; }
+.tk .voice__step {
+  width: 34px;
+  height: 34px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--white);
+  font: 400 1.4rem/1 var(--serif);
+  color: var(--ink);
+  cursor: pointer;
+}
+.tk .voice__step:hover { background: var(--yellow); }
+@media (min-width: 1040px) {
+  /* The stage panel stretches to the side column, so the photo takes up any spare height */
+  .tk .gsheet__body .stages { display: grid; }
+  .tk .gsheet__body .stage.is-active { height: 100%; }
+}
+.tk .voice__card figcaption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.tk .voice__who strong { display: block; color: var(--ink); font-weight: 700; }
+.tk .voice__photo {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--sand);
+}
+.tk .voice__photo--blank { display: grid; place-items: end center; overflow: hidden; }
+.tk .voice__photo--blank svg { width: 100%; height: 100%; fill: var(--ink); opacity: 0.35; }
+.tk .voice__card--pending { justify-content: center; align-items: center; gap: 14px; text-align: center; border-style: dashed; background: transparent; }
+.tk .voice__card--pending .voice__topic { align-self: center; margin-bottom: 0; }
+.tk .voice__card--pending figcaption { flex-direction: column; padding-top: 0; border-top: 0; }
+.tk .voice__card--pending .voice__photo { width: 72px; height: 72px; }
+.tk .voice__card--pending::before { display: none; }
+.tk .voice__card--prompt { justify-content: center; text-align: center; border-style: dashed; background: transparent; }
+.tk .voice__card--prompt::before { display: none; }
+.tk .voice__prompt { margin: 0; color: var(--ink-soft); }
+
+/* With JS, only the selected stage is shown */
+.tk .finder--ready .stage:not(.is-active) { display: none; }
+.tk .finder--ready .stage.is-active { animation: panel-in 0.35s ease both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tk .gsheet__head { transition: none; }
+}
+
+
+
+
+/* ---------- Manneguda glue ---------- */
+/* empty photo frame in the gallery slides */
+.tk .doorway__slide .slide-ph {
+  position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 16px;
+  background: repeating-linear-gradient(135deg, rgba(251, 245, 233, 0.07) 0 1px, transparent 1px 14px), #2B1C1A;
+  color: #EADFC9; font: 700 0.85rem/1.3 var(--sans); letter-spacing: 0.14em; text-transform: uppercase;
+}
+.tk .doorway__slide .slide-ph::after { content: ""; position: absolute; inset: 18px; border: 2px dashed rgba(251, 245, 233, 0.35); border-radius: 12px; pointer-events: none; }
+
+/* a fifth stage (AS & A Level) styled like the secondary stage */
+.tk .gsheet[data-stage="alevel"] { --stage-colour: var(--ink); --on-stage: var(--paper); }
+.tk .stage--alevel { --stage-colour: var(--ink); }
+.tk .stage--alevel .stage__tag { color: var(--paper); }
+
+/* keyframes the grade sheet refers to (defined in the Tukkuguda motion section) */
+@keyframes panel-in {
+  from { opacity: 0; translate: 0 8px; }
+  to { opacity: 1; translate: none; }
+}
