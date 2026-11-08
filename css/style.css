@@ -1315,3 +1315,53 @@ mark.is-marked { background-size: 100% 100%; }
   .campus--stage .shot__frame { height: 100%; aspect-ratio: auto; border-width: 10px; }
   .campus--stage .campus__dots { display: flex; }
 }
+
+/* ---------- 24. Grades & fees: stage tabs + grade cards ----------
+   Without JS every stage is listed in turn. js/modules/fees.js adds .fees--live: tabs appear and
+   only the chosen stage is shown. Fill in each card: fee range, grade details, parent testimonial. */
+.fees__tabs { display: none; }
+.fees__panel + .fees__panel { margin-top: clamp(28px, 4vw, 48px); }
+.fees__panel-title { margin: 0 0 6px; font-family: var(--f-display); font-weight: 400; font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.4rem); color: var(--maroon); }
+.fees__note { margin: 0 0 clamp(16px, 2.4vw, 26px); max-width: 60ch; color: rgba(26, 17, 16, .78); }
+
+.gcards { display: grid; gap: clamp(14px, 2vw, 24px); grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+
+.gcard {
+  display: flex; flex-direction: column; overflow: hidden; background: var(--paper); color: var(--ink); border-radius: 20px;
+  box-shadow: 0 18px 34px -22px rgba(118, 21, 24, .65), 0 1px 0 rgba(26, 17, 16, .06);
+  transition: transform .35s var(--ease-out), box-shadow .35s;
+}
+.gcard:hover { transform: translateY(-6px); box-shadow: 0 28px 44px -22px rgba(118, 21, 24, .7), 0 1px 0 rgba(26, 17, 16, .06); }
+.gcard__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px; background: var(--maroon); color: var(--paper); }
+.gcard__grade { margin: 0; font-family: var(--f-display); font-weight: 400; font-size: clamp(1.4rem, 1.15rem + .8vw, 1.9rem); line-height: 1; }
+.gcard__tag { padding: .3em .8em; border-radius: 999px; background: var(--yellow); color: var(--ink); font-weight: 700; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.gcard__fee { display: grid; gap: 2px; padding: 14px 20px; background: color-mix(in srgb, var(--yellow) 28%, var(--paper)); border-bottom: 2px dashed rgba(151, 27, 30, .28); }
+.gcard__fee span { font-weight: 700; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.gcard__fee b { font-family: var(--f-display); font-weight: 400; font-size: clamp(1.3rem, 1.1rem + .7vw, 1.7rem); color: var(--maroon); }
+.gcard__about { margin: 0; padding: 16px 20px 6px; color: var(--muted); line-height: 1.5; }
+.gcard__quote { position: relative; margin: auto 0 0; padding: 12px 20px 20px 54px; }
+.gcard__quote::before { content: "\201C"; position: absolute; left: 16px; top: 2px; font-family: var(--f-display); font-size: 3.6rem; line-height: 1; color: var(--orange); }
+.gcard__quote blockquote { margin: 0; font-size: 1rem; line-height: 1.5; font-style: italic; }
+.gcard__quote figcaption { margin-top: 8px; font-weight: 700; font-size: .8rem; letter-spacing: .06em; color: var(--maroon); }
+
+/* live (JS) state: pill tabs, one stage at a time, cards rise in */
+.fees--live .fees__tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 clamp(20px, 3vw, 34px); }
+.fees--live .fees__panel-title { display: none; }
+.fees--live .fees__panel + .fees__panel { margin-top: 0; }
+.fees__tab {
+  display: inline-flex; align-items: baseline; gap: .6em; padding: .7em 1.3em; border: 2px solid var(--maroon); border-radius: 999px; cursor: pointer;
+  background: transparent; color: var(--maroon); font: 700 1rem var(--f-body); transition: background-color .25s, color .25s, transform .3s var(--ease-out);
+}
+.fees__tab small { font-weight: 600; font-size: .75rem; letter-spacing: .06em; opacity: .75; }
+.fees__tab:hover { transform: translateY(-2px); }
+.fees__tab.is-on { background: var(--maroon); color: var(--paper); }
+.fees__tab:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.fees__panel[hidden] { display: none; }
+.fees--live:not(.is-in) .gcard { opacity: 0; }
+.fees--live.is-in .fees__panel.is-active .gcard { animation: gcardIn .6s var(--ease-out) both; animation-delay: calc(var(--i, 0) * 90ms); }
+@keyframes gcardIn { from { opacity: 0; transform: translateY(46px) rotate(2deg) scale(.96); } to { opacity: 1; transform: none; } }
+@media (max-width: 899px) {
+  .fees--live .fees__tabs { flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(var(--gutter) * -1); padding: 0 var(--gutter) 6px; scrollbar-width: none; }
+  .fees--live .fees__tabs::-webkit-scrollbar { display: none; }
+  .fees__tab { flex: none; }
+}

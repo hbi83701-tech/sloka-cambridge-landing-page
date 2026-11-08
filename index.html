@@ -411,15 +411,143 @@
         <header class="flow__head">
           <p class="eyebrow">03 · Grades &amp; fees</p>
           <h2 class="display-md" id="fees-title" data-split>Every stage, one clear fee.</h2>
-          <p class="flow__lede">Pick your child's stage to see the grades it covers and the yearly fee.</p>
+          <p class="flow__lede">Choose a stage, then see each grade's fee range, what it covers and what parents say.</p>
         </header>
-        <ul class="stages">
-          <li class="stage"><span class="stage__no" aria-hidden="true">1</span><h3 class="stage__name">Early Years</h3><p class="stage__grades">Grades to add</p><p class="stage__fee"><span>Yearly fee</span><b>To be added</b></p></li>
-          <li class="stage"><span class="stage__no" aria-hidden="true">2</span><h3 class="stage__name">Primary</h3><p class="stage__grades">Grades to add</p><p class="stage__fee"><span>Yearly fee</span><b>To be added</b></p></li>
-          <li class="stage"><span class="stage__no" aria-hidden="true">3</span><h3 class="stage__name">Lower Secondary</h3><p class="stage__grades">Grades to add</p><p class="stage__fee"><span>Yearly fee</span><b>To be added</b></p></li>
-          <li class="stage"><span class="stage__no" aria-hidden="true">4</span><h3 class="stage__name">IGCSE</h3><p class="stage__grades">Grades to add</p><p class="stage__fee"><span>Yearly fee</span><b>To be added</b></p></li>
-          <li class="stage"><span class="stage__no" aria-hidden="true">5</span><h3 class="stage__name">AS &amp; A Level</h3><p class="stage__grades">Grades to add</p><p class="stage__fee"><span>Yearly fee</span><b>To be added</b></p></li>
-        </ul>
+        <div class="fees" data-fees>
+          <div class="fees__tabs" role="tablist" aria-label="School stages">
+            <button class="fees__tab is-on" type="button" role="tab" id="fees-tab-ey" aria-selected="true" aria-controls="fees-panel-ey" data-stage="ey"><span>Early Years</span><small>3 grades</small></button>
+            <button class="fees__tab" type="button" role="tab" id="fees-tab-pri" aria-selected="false" aria-controls="fees-panel-pri" data-stage="pri"><span>Primary</span><small>5 grades</small></button>
+            <button class="fees__tab" type="button" role="tab" id="fees-tab-ls" aria-selected="false" aria-controls="fees-panel-ls" data-stage="ls"><span>Lower Secondary</span><small>3 grades</small></button>
+            <button class="fees__tab" type="button" role="tab" id="fees-tab-ig" aria-selected="false" aria-controls="fees-panel-ig" data-stage="ig"><span>IGCSE</span><small>2 grades</small></button>
+            <button class="fees__tab" type="button" role="tab" id="fees-tab-as" aria-selected="false" aria-controls="fees-panel-as" data-stage="as"><span>AS &amp; A Level</span><small>2 grades</small></button>
+          </div>
+          <div class="fees__panels">
+          <div class="fees__panel is-active" role="tabpanel" id="fees-panel-ey" aria-labelledby="fees-tab-ey" tabindex="0">
+            <h3 class="fees__panel-title">Early Years</h3>
+            <p class="fees__note">Details about the Early Years stage to add.</p>
+            <div class="gcards">
+              <article class="gcard" style="--i:0">
+                <header class="gcard__head"><h4 class="gcard__grade">Nursery</h4><span class="gcard__tag">Early Years</span></header>
+                <div class="gcard__fee"><span>Yearly fee range</span><b>To be added</b></div>
+                <p class="gcard__about">Details about this grade to add.</p>
+                <figure class="gcard__quote"><blockquote>Parent testimonial to add.</blockquote><figcaption>Parent name to add</figcaption></figure>
+              </article>
+              <article class="gcard" style="--i:1">
+                <header class="gcard__head"><h4 class="gcard__grade">LKG</h4><span class="gcard__tag">Early Years</span></header>
+                <div class="gcard__fee"><span>Yearly fee range</span><b>To be added</b></div>
+                <p class="gcard__about">Details about this grade to add.</p>
+                <figure class="gcard__quote"><blockquote>Parent testimonial to add.</blockquote><figcaption>Parent name to add</figcaption></figure>
+              </article>
+              <article class="gcard" style="--i:2">
+                <header class="gcard__head"><h4 class="gcard__grade">UKG</h4><span class="gcard__tag">Early Years</span></header>
+                <div class="gcard__fee"><span>Yearly fee range</span><b>To be added</b></div>
+                <p class="gcard__about">Details about this grade to add.</p>
+                <figure class="gcard__quote"><blockquote>Parent testimonial to add.</blockquote><figcaption>Parent name to add</figcaption></figure>
+              </article>
+            </div>
+          </div>
+
+          <div class="fees__panel" role="tabpanel" id="fees-panel-pri" aria-labelledby="fees-tab-pri" tabindex="0">
+            <h3 class="fees__panel-title">Primary</h3>
+            <p class="fees__note">Details about the Primary stage to add.</p>
+            <div class="gcards">
+              <article class="gcard" style="--i:0">
+                <header class="gcard__head"><h4 class="gcard__grade">Grade 1</h4><span class="gcard__tag">Primary</span></header>
+                <div class="gcard__fee"><span>Yearly fee range</span><b>To be added</b></div>
+                <p class="gcard__about">Details about this grade to add.</p>
+                <figure class="gcard__quote"><blockquote>Parent testimonial to add.</blockquote><figcaption>Parent name to add</figcaption></figure>
+              </article>
+              <article class="gcard" style="--i:1">
+                <header class="gcard__head"><h4 class="gcard__grade">Grade 2</h4><span class="gcard__tag">Primary</span></header>
+                <div class="gcard__fee"><span>Yearly fee range</span><b>To be added</b></div>
+                <p class="gcard__about">Details about this grade to add.</p>
+                <figure class="gcard__quote"><blockquote>Parent testimonial to add.</blockquote><figcaption>Parent name to add</figcaption></figure>
+              </article>
+              <article class="gcard" style="--i:2">
+                <header class="gcard__head"><h4 class="gcard__grade">Grade 3</h4><span class="gcard__tag">Primary</span></header>
+                <div class="gcard__fee"><span>Yearly fee range</span><b>To be added</b></div>
+                <p class="gcard__about">Details about this grade to add.</p>
+                <figure class="gcard__quote"><blockquote>Parent testimonial to add.</blockquote><figcaption>Parent name to add</figcaption></figure>
+              </article>
+              <article class="gcard" style="--i:3">
+                <header class="gcard__head"><h4 class="gcard__grade">Grade 4</h4><span class="gcard__tag">Primary</span></header>
+                <div class="gcard__fee"><span>Yearly fee range</span><b>To be added</b></div>
+                <p class="gcard__about">Details about this grade to add.</p>
+                <figure class="gcard__quote"><blockquote>Parent testimonial to add.</blockquote><figcaption>Parent name to add</figcaption></figure>
+              </article>
+              <article class="gcard" style="--i:4">
+                <header class="gcard__head"><h4 class="gcard__grade">Grade 5</h4><span class="gcard__tag">Primary</span></header>
+                <div class="gcard__fee"><span>Yearly fee range</span><b>To be added</b></div>
+                <p class="gcard__about">Details about this grade to add.</p>
+                <figure class="gcard__quote"><blockquote>Parent testimonial to add.</blockquote><figcaption>Parent name to add</figcaption></figure>
+              </article>
+            </div>
+          </div>
+
+          <div class="fees__panel" role="tabpanel" id="fees-panel-ls" aria-labelledby="fees-tab-ls" tabindex="0">
+            <h3 class="fees__panel-title">Lower Secondary</h3>
+            <p class="fees__note">Details about the Lower Secondary stage to add.</p>
+            <div class="gcards">
+              <article class="gcard" style="--i:0">
+                <header class="gcard__head"><h4 class="gcard__grade">Grade 6</h4><span class="gcard__tag">Lower Secondary</span></header>
+                <div class="gcard__fee"><span>Yearly fee range</span><b>To be added</b></div>
+                <p class="gcard__about">Details about this grade to add.</p>
+                <figure class="gcard__quote"><blockquote>Parent testimonial to add.</blockquote><figcaption>Parent name to add</figcaption></figure>
+              </article>
+              <article class="gcard" style="--i:1">
+                <header class="gcard__head"><h4 class="gcard__grade">Grade 7</h4><span class="gcard__tag">Lower Secondary</span></header>
+                <div class="gcard__fee"><span>Yearly fee range</span><b>To be added</b></div>
+                <p class="gcard__about">Details about this grade to add.</p>
+                <figure class="gcard__quote"><blockquote>Parent testimonial to add.</blockquote><figcaption>Parent name to add</figcaption></figure>
+              </article>
+              <article class="gcard" style="--i:2">
+                <header class="gcard__head"><h4 class="gcard__grade">Grade 8</h4><span class="gcard__tag">Lower Secondary</span></header>
+                <div class="gcard__fee"><span>Yearly fee range</span><b>To be added</b></div>
+                <p class="gcard__about">Details about this grade to add.</p>
+                <figure class="gcard__quote"><blockquote>Parent testimonial to add.</blockquote><figcaption>Parent name to add</figcaption></figure>
+              </article>
+            </div>
+          </div>
+
+          <div class="fees__panel" role="tabpanel" id="fees-panel-ig" aria-labelledby="fees-tab-ig" tabindex="0">
+            <h3 class="fees__panel-title">IGCSE</h3>
+            <p class="fees__note">Details about the IGCSE stage to add.</p>
+            <div class="gcards">
+              <article class="gcard" style="--i:0">
+                <header class="gcard__head"><h4 class="gcard__grade">Grade 9</h4><span class="gcard__tag">IGCSE</span></header>
+                <div class="gcard__fee"><span>Yearly fee range</span><b>To be added</b></div>
+                <p class="gcard__about">Details about this grade to add.</p>
+                <figure class="gcard__quote"><blockquote>Parent testimonial to add.</blockquote><figcaption>Parent name to add</figcaption></figure>
+              </article>
+              <article class="gcard" style="--i:1">
+                <header class="gcard__head"><h4 class="gcard__grade">Grade 10</h4><span class="gcard__tag">IGCSE</span></header>
+                <div class="gcard__fee"><span>Yearly fee range</span><b>To be added</b></div>
+                <p class="gcard__about">Details about this grade to add.</p>
+                <figure class="gcard__quote"><blockquote>Parent testimonial to add.</blockquote><figcaption>Parent name to add</figcaption></figure>
+              </article>
+            </div>
+          </div>
+
+          <div class="fees__panel" role="tabpanel" id="fees-panel-as" aria-labelledby="fees-tab-as" tabindex="0">
+            <h3 class="fees__panel-title">AS &amp; A Level</h3>
+            <p class="fees__note">Details about the AS &amp; A Level stage to add.</p>
+            <div class="gcards">
+              <article class="gcard" style="--i:0">
+                <header class="gcard__head"><h4 class="gcard__grade">Grade 11</h4><span class="gcard__tag">AS Level</span></header>
+                <div class="gcard__fee"><span>Yearly fee range</span><b>To be added</b></div>
+                <p class="gcard__about">Details about this grade to add.</p>
+                <figure class="gcard__quote"><blockquote>Parent testimonial to add.</blockquote><figcaption>Parent name to add</figcaption></figure>
+              </article>
+              <article class="gcard" style="--i:1">
+                <header class="gcard__head"><h4 class="gcard__grade">Grade 12</h4><span class="gcard__tag">A Level</span></header>
+                <div class="gcard__fee"><span>Yearly fee range</span><b>To be added</b></div>
+                <p class="gcard__about">Details about this grade to add.</p>
+                <figure class="gcard__quote"><blockquote>Parent testimonial to add.</blockquote><figcaption>Parent name to add</figcaption></figure>
+              </article>
+            </div>
+          </div>
+          </div>
+        </div>
       </div>
     </section>
 
