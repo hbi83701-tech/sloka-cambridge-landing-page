@@ -883,7 +883,7 @@ mark.is-marked { background-size: 100% 100%; }
 .footer__line path { fill: none; stroke: var(--yellow); stroke-width: 2.5; stroke-dasharray: 4 7; }
 .footer__mandala { position: absolute; right: 0; top: 0; width: 200px; height: 200px; }
 .footer__grow-note { position: absolute; right: 210px; top: 150px; margin: 0; transform: rotate(-4deg); }
-.footer__grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr .8fr; gap: 40px var(--gutter); padding-bottom: 40px; border-bottom: 1px solid rgba(251, 245, 233, .2); }
+.footer__grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px var(--gutter); padding-bottom: 40px; border-bottom: 1px solid rgba(251, 245, 233, .2); }
 .footer__brand img { height: 64px; width: auto; margin-bottom: 18px; }
 .footer__brand p { max-width: 32ch; }
 .footer__brand .compass { margin-top: 10px; }

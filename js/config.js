@@ -18,7 +18,7 @@ window.SLOKA_SITE = {
   EMAIL: 'admissions@slokainternational.com',  // admissions
   EMAIL2: 'info@slokainternational.com',       // general
   ADDRESS: 'Exit 12 Sports, Turkayamjal Rd, opp. RTA Office, Manneguda, Telangana 501510',
-  OFFICE_HOURS: 'Office: 8:30 AM – 5:00 PM · School: Mon–Sat, 8:30 AM – 3:30 PM',
+  OFFICE_HOURS: 'Visiting hours: 8:30 AM – 5:00 PM', // shown in the footer; label is for parents
   DIRECTIONS_URL: 'https://www.google.com/maps/dir/?api=1&destination=Sloka+International+School+Turkayamjal+Rd+Manneguda+Telangana+501510',
 
   SOCIAL: {
