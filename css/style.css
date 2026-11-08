@@ -79,6 +79,7 @@ section { position: relative; }
 [data-bg="cream"]  { background: var(--paper); }
 [data-bg="yellow"] { background: var(--yellow); }
 [data-bg="maroon"] { background: var(--maroon); }
+[data-bg="deep"]   { background: var(--maroon-deep); }
 [data-bg].has-blend { isolation: isolate; }
 [data-bg].has-blend::before {
   content: ""; position: absolute; left: 0; right: 0; top: 0; z-index: -1; pointer-events: none;
@@ -1472,4 +1473,18 @@ mark.is-marked { background-size: 100% 100%; }
   .location__grid { grid-template-columns: minmax(0, 1fr); gap: 18px; }
   .location__panel { grid-column: 1; grid-row: 1; }
   .location__grid .orbit-map { grid-column: 1; grid-row: 2; width: min(100%, calc((100svh - 130px) * 1000 / 1240)); }
+}
+
+/* ---------- 28. Border between Transport and Admission ----------
+   Both used to be maroon and read as one block. Admission now has a deeper maroon and a scalloped,
+   gold-outlined edge: little arches of the Transport colour hang into it. */
+.flow--journey::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 26px; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 0, transparent 0 13px, var(--yellow) 13px 15.5px, transparent 16px) 0 0 / 40px 26px repeat-x,
+    radial-gradient(circle at 50% 0, var(--maroon) 0 15px, transparent 15.5px) 0 0 / 40px 26px repeat-x;
+}
+.flow--journey .flow__inner { position: relative; z-index: 1; }
+@media (max-width: 899px) {
+  .flow--journey::before { height: 22px; background-size: 32px 22px, 32px 22px; }
 }

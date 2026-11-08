@@ -12,7 +12,7 @@ import { splitLines } from './split.js';
 import { bloomTimeline, pulse } from './mandala.js';
 import { spark } from './spark.js';
 
-const COLORS = { cream: '#FBF5E9', yellow: '#F9C212', maroon: '#971B1E' };
+const COLORS = { cream: '#FBF5E9', yellow: '#F9C212', maroon: '#971B1E', deep: '#761518' };
 
 /* ---------- Section colour blends ----------
    Every section keeps its own solid colour, so text always sits on the right
@@ -26,6 +26,7 @@ export function initBgMorph() {
     if (!i) return;
     const prev = sections[i - 1].dataset.bg;
     if (prev === sec.dataset.bg) return;
+    if (sec.hasAttribute('data-hard')) return;   // keeps a crisp edge (its own border) instead of melting in
     sec.style.setProperty('--blend-from', COLORS[prev]);
     sec.classList.add('has-blend');
   });
