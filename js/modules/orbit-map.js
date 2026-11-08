@@ -56,8 +56,21 @@ export function initOrbitMap() {
     text.setAttribute('font-size', sizes[l.ring]);
     text.textContent = l.name;
     g.append(dot, text);
+    // click (or Enter / Space) on a place: same as typing it in the search bar
+    text.setAttribute('tabindex', '0');
+    text.setAttribute('role', 'button');
+    text.setAttribute('aria-label', `Show ${l.name}: distance and drive time`);
+    [text, dot].forEach((el) => el.addEventListener('click', () => pickPlace(l.name)));
+    text.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pickPlace(l.name); } });
     return { ...l, dot, text, x: 0, y: 0, key: norm(l.name) };
   });
+
+  // Fill the search bar with a place chosen on the circle and run the same search as typing it.
+  function pickPlace(name) {
+    input.value = name;
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  }
 
   // Phones keep the names still (an ellipse doesn't rotate rigidly, so names would
   // drift into each other); they "breathe" in and out instead. Larger screens orbit.

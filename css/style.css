@@ -720,7 +720,9 @@ mark.is-marked { background-size: 100% 100%; }
 .road--ring { stroke-width: 1.2; stroke: rgba(251, 245, 233, .16); stroke-dasharray: 4 8; }
 .orbit-map__glow { fill: rgba(249, 194, 18, .14); }
 .orbit-map__route { fill: none; stroke: var(--yellow); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 1 12; }
-.loc { font-family: var(--f-display); fill: rgba(251, 245, 233, .78); transition: fill .3s; }
+.loc { font-family: var(--f-display); fill: rgba(251, 245, 233, .78); transition: fill .3s; cursor: pointer; }
+.loc:hover, .loc:focus-visible { fill: var(--yellow); outline: none; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
+.loc-dot { cursor: pointer; }
 .loc.is-dim { fill: rgba(251, 245, 233, .28); }
 .loc.is-hit { fill: var(--yellow); }
 .loc-dot { fill: var(--yellow); }
