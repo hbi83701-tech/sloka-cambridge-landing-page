@@ -34,6 +34,7 @@ window.SLOKA_SITE = {
   // mins: APPROXIMATE drive time to the school [low, high] in minutes, typical traffic.
   //       These are rough estimates — please have the transport/admissions team verify
   //       and correct them before launch. Remove "mins" from an entry to hide its time.
+  // Optional per area: km: 12  (road distance in km, shown in the result box beside the search; until added it shows "To be added")
   LOCALITIES: [
     { name: 'Turkayamjal', angle: 330, ring: 0, mins: [10, 15] },
     { name: 'Adibatla', angle: 150, ring: 0, mins: [15, 20] },

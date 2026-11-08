@@ -1443,3 +1443,33 @@ mark.is-marked { background-size: 100% 100%; }
 }
 .orbit-map__change:hover, .orbit-map__change:focus-visible { background: var(--yellow); color: var(--ink); border-color: var(--yellow); }
 .orbit-map__answer[hidden], .orbit-map__change[hidden] { display: none; }
+
+/* ---------- 27. Map section: small heading, circle left, search + result box right ---------- */
+.location { padding: calc(var(--header-h) + 28px) var(--gutter) clamp(48px, 8vh, 90px); }
+.location__head { display: block; max-width: var(--max); margin: 0 auto clamp(10px, 2vh, 22px); }
+.location__title { margin: 0; font-family: var(--f-display); font-weight: 400; font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.4rem); line-height: 1.1; color: var(--paper); }
+.location__grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 64px); align-items: center; }
+.location__grid .orbit-map { grid-column: 1; grid-row: 1; margin: 0 auto; width: min(100%, 880px, calc(100vh - 170px), calc(100svh - 170px)); }
+.location__panel { grid-column: 2; grid-row: 1; display: grid; gap: clamp(16px, 2.6vh, 28px); align-content: center; }
+.location__panel .location__note { margin: 14px 0 0; font-size: .88rem; opacity: .8; }
+
+.loc-card {
+  padding: clamp(18px, 2.2vw, 30px); border-radius: 22px; border: 1px solid rgba(251, 245, 233, .28); background: rgba(251, 245, 233, .07);
+  transition: background-color .45s, color .45s, border-color .45s, box-shadow .45s;
+}
+.loc-card__label { margin: 0 0 4px; font-weight: 700; font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: var(--yellow); }
+.loc-card__area { margin: 0 0 clamp(12px, 2vh, 20px); font-family: var(--f-display); font-weight: 400; font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.8rem); line-height: 1.05; color: var(--paper); transition: color .45s; }
+.loc-card__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0; }
+.loc-card__stats > div { padding: 12px 16px; border-radius: 14px; background: rgba(26, 17, 16, .32); transition: background-color .45s; }
+.loc-card__stats dt { font-weight: 700; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; opacity: .75; }
+.loc-card__stats dd { margin: 4px 0 0; font-family: var(--f-display); font-size: clamp(1.25rem, 1rem + .9vw, 1.8rem); line-height: 1.1; color: var(--yellow); transition: color .45s; }
+.loc-card.is-on { background: var(--paper); border-color: transparent; color: var(--ink); box-shadow: 0 24px 44px -24px rgba(0, 0, 0, .65); }
+.loc-card.is-on .loc-card__label { color: var(--orange); }
+.loc-card.is-on .loc-card__area, .loc-card.is-on .loc-card__stats dd { color: var(--maroon); }
+.loc-card.is-on .loc-card__stats > div { background: color-mix(in srgb, var(--yellow) 30%, var(--paper)); }
+
+@media (max-width: 899px) {
+  .location__grid { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .location__panel { grid-column: 1; grid-row: 1; }
+  .location__grid .orbit-map { grid-column: 1; grid-row: 2; width: min(100%, calc((100svh - 130px) * 1000 / 1240)); }
+}

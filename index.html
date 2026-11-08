@@ -685,60 +685,57 @@
     </section>
     </div>
 
-    <!-- ================= 3.12 LOCATION MAP ================= -->
+    <!-- ================= 3.12 LOCATION MAP =================
+         Circle map on the left; on the right the search bar and, under it, the chosen area with its distance
+         (km) and drive time. Drive times (and optional km) come from LOCALITIES in js/config.js. -->
     <section class="location theme-dark" id="location" data-bg="maroon" aria-labelledby="location-title">
       <div class="location__head">
-        <h2 class="display-md" id="location-title" data-split>A Cambridge school, close to home.</h2>
-        <div class="location__search">
-          <label for="whereInput" class="hand">Where do you live?</label>
-          <input id="whereInput" type="text" list="localityList" autocomplete="off" placeholder="e.g. Hastinapuram">
-          <p class="location__result" aria-live="polite"></p>
-          <p class="location__note" hidden>Approximate drive time in typical traffic. Our admissions team can help you with the best route.</p>
-        </div>
+        <h2 class="location__title" id="location-title">A Cambridge school, close to home.</h2>
       </div>
 
-      <div class="orbit-map" data-orbit>
-        <svg class="orbit-map__svg" viewBox="-500 -500 1000 1000" aria-hidden="true">
-          <g class="orbit-map__roads">
-            <circle r="420" class="road road--orr"/>
-            <path class="road" d="M-500 -120 C -250 -160, -60 -60, 0 0 C 80 70, 260 140, 500 180"/>
-            <path class="road" d="M-260 -500 C -200 -260, -80 -100, 0 0 C 40 60, 60 260, 30 500"/>
-            <path class="road road--thin" d="M-500 260 C -300 180, -120 80, 0 0"/>
-            <path class="road road--thin" d="M120 -500 C 90 -260, 40 -100, 0 0"/>
-            <circle r="210" class="road road--ring"/>
-            <circle r="320" class="road road--ring"/>
-          </g>
-          <path class="orbit-map__route"/>
-          <g class="orbit-map__labels"></g>
-          <g class="orbit-map__centre">
-            <circle r="70" class="orbit-map__glow"/>
-          </g>
-        </svg>
-        <div class="orbit-map__mandala mandala" data-mandala="dark"></div>
-        <p class="orbit-map__pin">Sloka, Manneguda</p>
-        <p class="orbit-map__caption hand">illustration, not to scale</p>
-        <!-- shown after a search, so the answer stays on screen when the page scrolls down to the map -->
-        <p class="orbit-map__answer" aria-hidden="true" hidden></p>
-        <button class="orbit-map__change" type="button" hidden>↑ Change area</button>
-        <ul class="visually-hidden" aria-label="Neighbourhoods near Sloka Manneguda" data-locality-list></ul>
+      <div class="location__grid">
+        <div class="location__panel">
+          <div class="location__search">
+            <label for="whereInput" class="hand">Where do you live?</label>
+            <input id="whereInput" type="text" list="localityList" autocomplete="off" placeholder="e.g. Hastinapuram">
+            <p class="location__result visually-hidden" aria-live="polite"></p>
+          </div>
+
+          <div class="loc-card" data-loc-card>
+            <p class="loc-card__label">Your area</p>
+            <h3 class="loc-card__area" data-loc-area>Search your area</h3>
+            <dl class="loc-card__stats">
+              <div><dt>Distance</dt><dd data-loc-km>—</dd></div>
+              <div><dt>Drive time</dt><dd data-loc-time>—</dd></div>
+            </dl>
+            <p class="location__note" hidden>Approximate drive time in typical traffic. Our admissions team can help you with the best route.</p>
+          </div>
+        </div>
+
+        <div class="orbit-map" data-orbit>
+          <svg class="orbit-map__svg" viewBox="-500 -500 1000 1000" aria-hidden="true">
+            <g class="orbit-map__roads">
+              <circle r="420" class="road road--orr"/>
+              <path class="road" d="M-500 -120 C -250 -160, -60 -60, 0 0 C 80 70, 260 140, 500 180"/>
+              <path class="road" d="M-260 -500 C -200 -260, -80 -100, 0 0 C 40 60, 60 260, 30 500"/>
+              <path class="road road--thin" d="M-500 260 C -300 180, -120 80, 0 0"/>
+              <path class="road road--thin" d="M120 -500 C 90 -260, 40 -100, 0 0"/>
+              <circle r="210" class="road road--ring"/>
+              <circle r="320" class="road road--ring"/>
+            </g>
+            <path class="orbit-map__route"/>
+            <g class="orbit-map__labels"></g>
+            <g class="orbit-map__centre">
+              <circle r="70" class="orbit-map__glow"/>
+            </g>
+          </svg>
+          <div class="orbit-map__mandala mandala" data-mandala="dark"></div>
+          <p class="orbit-map__pin">Sloka, Manneguda</p>
+          <p class="orbit-map__caption hand">illustration, not to scale</p>
+          <ul class="visually-hidden" aria-label="Neighbourhoods near Sloka Manneguda" data-locality-list></ul>
+        </div>
       </div>
       <datalist id="localityList"></datalist>
-
-      <div class="location__real">
-        <div class="location__map">
-          <!-- the cover lets the page scroll straight past the map; click/tap it to use the map -->
-          <button class="location__map-cover" type="button"><span>Click to use the map</span></button>
-          <iframe title="Google Map showing Sloka International School, Manneguda"
-                  src="https://www.google.com/maps?q=Sloka+International+School+Manneguda+Hyderabad&output=embed"
-                  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-        <address class="location__addr">
-          <strong>Sloka International School, Manneguda</strong><br>
-          <span data-config="address">Exit 12 Sports, Turkayamjal Rd, opp. RTA Office, Manneguda, Telangana 501510</span>
-          <a class="location__phone" data-config-href="tel" href="tel:+919640334460"><span data-config="phone">+91 96403 34460</span></a>
-          <a class="btn btn--yellow" data-config-href="directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=Sloka+International+School+Turkayamjal+Rd+Manneguda+Telangana+501510" target="_blank" rel="noopener">Get Directions</a>
-        </address>
-      </div>
     </section>
 
     <!-- ================= 3.6 ADMISSION JOURNEY: fill in each step's title and description =================
