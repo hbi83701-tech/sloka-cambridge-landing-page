@@ -1182,3 +1182,61 @@ mark.is-marked { background-size: 100% 100%; }
   .stage__grades, .stage__fee { grid-column: 2; text-align: left; }
   .routes li { grid-template-columns: 5.5rem minmax(0, 1fr); }
 }
+
+/* ---------- 22. Enquiry form inside the hero ----------
+   The form is a card on the right of the hero. It is sized by the screen HEIGHT (--hf is the field
+   height) so the whole form fits on one screen; if a very short screen still cannot fit it, the card
+   scrolls inside itself and never grows taller than the screen. */
+.hero__form {
+  --hf: clamp(32px, 5.2vh, 46px);
+  position: relative; z-index: 1; width: 100%; box-sizing: border-box;
+  max-height: calc(100svh - var(--header-h) - 28px); overflow-y: auto; overscroll-behavior: contain;
+  padding: clamp(12px, 2.2vh, 24px) clamp(14px, 1.7vw, 24px);
+  background: var(--paper); color: var(--ink); border-radius: 20px;
+  box-shadow: 0 28px 60px -22px rgba(26, 17, 16, .6);
+}
+.hero__form-head { margin: 0 0 clamp(6px, 1.4vh, 14px); }
+.hero__form-seats { margin: 0 0 2px; font-weight: 700; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--orange); }
+.hero__form-title { margin: 0; font-family: var(--f-display); font-weight: 400; font-size: clamp(1.25rem, 1rem + .9vw, 1.8rem); line-height: 1.05; color: var(--maroon); }
+.hero__noscript { margin: 0; font-size: .95rem; }
+
+/* compact widget, only inside the hero card */
+.hero__form #ee-form-8 .ee-form-header { display: none !important; }
+.hero__form #ee-form-8 .ee-form-body { gap: 0 12px; }
+.hero__form #ee-form-8 .ee-row { margin: 0 0 clamp(5px, 1vh, 10px) !important; }
+.hero__form #ee-form-8 label { margin: 0 0 2px; font-size: .68rem; letter-spacing: .05em; }
+.hero__form #ee-form-8 input[type="text"], .hero__form #ee-form-8 input[type="tel"], .hero__form #ee-form-8 input[type="email"], .hero__form #ee-form-8 input:not([type]),
+.hero__form #ee-form-8 .select2-container .select2-selection--single { height: var(--hf) !important; font-size: .95rem !important; border-radius: 8px !important; padding: 0 12px; }
+.hero__form #ee-form-8 .select2-selection__rendered { line-height: calc(var(--hf) - 3px) !important; font-size: .95rem !important; }
+.hero__form #ee-form-8 .select2-selection__arrow { height: calc(var(--hf) - 2px) !important; }
+.hero__form #ee-form-8 .captchaContainer { gap: 12px; }
+.hero__form #ee-form-8 .cpatcha { height: var(--hf) !important; padding: 0 6px 0 10px !important; border-radius: 8px; }
+.hero__form #ee-form-8 .cpatcha canvas { max-height: calc(var(--hf) - 6px); width: auto; }
+.hero__form #ee-form-8 .cpatcha .refreshButtonContainer { min-width: 32px; height: 32px; }
+.hero__form #ee-form-8 .check-box-field { margin-top: 0 !important; }
+.hero__form #ee-form-8 .check-box-field label { gap: 9px; }
+.hero__form #ee-form-8 .check-box-field label span { font-size: .78rem !important; line-height: 1.25 !important; }
+.hero__form #ee-form-8 .check-box-field input[type="checkbox"] { width: 18px; height: 18px; }
+.hero__form #ee-form-8 .ee-form-footer { padding: 2px 0 0 !important; }
+.hero__form #ee-form-8 .btn-submit { width: 100%; min-width: 0; min-height: var(--hf); padding: .55em 1.4em !important; font-size: 1rem !important; }
+.hero__form #ee-form-8 .error { margin-top: 2px; font-size: .75rem; }
+
+@media (min-width: 900px) {
+  .hero {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(440px, 600px); column-gap: clamp(20px, 3vw, 56px);
+    align-items: end; height: 100vh; height: 100svh; min-height: 0;
+    padding: calc(var(--header-h) + 14px) max(var(--gutter), calc((100vw - var(--max)) / 2)) clamp(14px, 3vh, 34px);
+  }
+  .hero__content { margin: 0; max-width: none; }
+  .hero__title { font-size: clamp(2.4rem, min(.6rem + 5.2vw, 12vh), 7rem); }
+  .hero__sub { margin-bottom: 1.1em; }
+  .hero__form { align-self: center; }
+  .hero__note { display: none; }
+}
+@media (min-width: 900px) and (max-height: 700px) { .hero__form-seats { display: none; } }
+
+@media (max-width: 899px) {
+  .hero { flex-direction: column; align-items: stretch; justify-content: flex-end; gap: 22px; }
+  .hero__form { max-height: calc(100svh - 24px); }
+  .hero__form #ee-form-8 .ee-form-body { grid-template-columns: 1fr; }
+}

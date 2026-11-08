@@ -152,6 +152,19 @@
         </div>
       </div>
 
+      <!-- Enquiry form, in the hero. Sized to the screen (css section 22) and scrolls inside itself
+           if a very short screen cannot fit it. The ExtraaEdge script (loaded once at the end of <body>)
+           injects the form into #ee-form-8; js/enquiry-widget.js is its glue. Our restyling lives in
+           css/style.css under #ee-form-8 only. -->
+      <aside class="hero__form" id="enquiry-form" aria-labelledby="enquiry-title" data-lenis-prevent>
+        <div class="hero__form-head">
+          <p class="hero__form-seats">Limited seats for AY 2027–28</p>
+          <h2 class="hero__form-title" id="enquiry-title">Book a campus visit</h2>
+        </div>
+        <div id="ee-form-8" class="hero__widget"></div>
+        <noscript><p class="hero__noscript">Please enable JavaScript to use the enquiry form, or call us on +91 96403 34460.</p></noscript>
+      </aside>
+
       <p class="hero__note hand" aria-hidden="true">scroll, the spark follows you ↓</p>
     </section>
 
@@ -433,47 +446,6 @@
           <details class="faq__item"><summary>Question to add</summary><p>Answer to add.</p></details>
           <details class="faq__item"><summary>Question to add</summary><p>Answer to add.</p></details>
         </div>
-      </div>
-    </section>
-
-    <!-- ================= 3.13 ENQUIRY: ExtraaEdge CRM widget inside the admission ticket ================= -->
-    <section class="enquiry" id="enquiry-form" data-bg="yellow" aria-labelledby="enquiry-title">
-      <div class="enquiry__head">
-        <p class="enquiry__seats">Limited seats for AY 2027–28</p>
-        <h2 class="display-md" id="enquiry-title">Your admission ticket.</h2>
-        <p>Tell us a little about your family. Our admissions team will call to arrange your campus visit.</p>
-      </div>
-
-      <div class="ticket" data-ticket>
-        <div class="ticket__main">
-          <div class="ticket__brand" aria-hidden="true">
-            <span class="ticket__brand-m mandala" data-mandala></span>
-            <span>Admission enquiry · AY 2027–28</span>
-          </div>
-
-          <!-- ExtraaEdge enquiry form widget (the school's CRM). Their script
-               (loaded once, at the end of <body>) injects the form and its CSS here.
-               Our restyling lives in css/style.css under #ee-form-8 only.
-               js/enquiry-widget.js keeps smooth scrolling off its option lists. -->
-          <div id="ee-form-8" class="ticket__widget"></div>
-          <noscript><p class="ticket__noscript">Please enable JavaScript to use the enquiry form, or call us on +91 96403 34460.</p></noscript>
-
-          <div class="ticket__stamp" aria-hidden="true">
-            <span class="ticket__stamp-m mandala" data-mandala="stamp"></span>
-            <span class="ticket__stamp-t">Received</span>
-          </div>
-        </div>
-
-        <div class="ticket__perf" aria-hidden="true"></div>
-
-        <div class="ticket__stub" aria-hidden="true">
-          <p class="ticket__stub-k">Admission · AY</p>
-          <p class="ticket__stub-y">2027–28</p>
-          <p class="ticket__stub-seats">Limited seats</p>
-          <p class="ticket__stub-r">Early Years<br>to A Levels</p>
-          <div class="barcode"></div>
-        </div>
-
       </div>
     </section>
   </main>
