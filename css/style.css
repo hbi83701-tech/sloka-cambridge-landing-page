@@ -1501,3 +1501,11 @@ mark.is-marked { background-size: 100% 100%; }
   .split__control { gap: 10px; }
   .split__control .hand { font-size: 1.2rem; }
 }
+
+/* ---------- 30. Phones: the hero form must never trap the page's scroll ----------
+   On desktop the form card scrolls inside itself only when the window is too short to fit it. On phones that
+   inner scroll swallowed finger drags (the page would not move while a finger was on the form), so the form
+   simply takes the height it needs and the whole page scrolls. */
+@media (max-width: 899px) {
+  .hero__form { max-height: none; overflow: visible; overscroll-behavior: auto; }
+}
