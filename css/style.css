@@ -1473,7 +1473,13 @@ mark.is-marked { background-size: 100% 100%; }
 @media (max-width: 899px) {
   .location__grid { grid-template-columns: minmax(0, 1fr); gap: 18px; }
   .location__panel { grid-column: 1; grid-row: 1; }
+  /* phones: a tall, full-width map (see MOB_H in js/modules/orbit-map.js); no height cap, the page just scrolls */
   .location__grid .orbit-map { grid-column: 1; grid-row: 2; width: min(100%, calc((100svh - 130px) * 1000 / 1240)); }
+  .location__search input { font-size: 16px; min-height: 48px; }
+}
+@media (max-width: 599px) {
+  .location__grid .orbit-map { grid-column: 1; grid-row: 2; width: calc(100% + 2 * var(--gutter)); margin: 0 calc(-1 * var(--gutter)); aspect-ratio: 1000 / 2600; }
+  .orbit-map__pin { top: calc(50% + 3.7%); font-size: .75rem; }
 }
 
 /* ---------- 29. Phones: tap size, readable text, no iOS zoom ---------- */
@@ -1491,10 +1497,12 @@ mark.is-marked { background-size: 100% 100%; }
   /* footer links: comfortable to tap */
   .footer__list a { display: inline-block; padding: 9px 0; }
 }
-@media (hover: none) {
-  /* map places: a wider invisible edge around each name so a fingertip can hit it */
+@media (max-width: 899px), (hover: none) {
+  /* map places: an invisible edge around each name so a fingertip can hit it (phones: rows are ~150 units apart = 44px) */
   .loc { stroke: transparent; stroke-width: 34px; stroke-linejoin: round; paint-order: stroke; pointer-events: all; }
 }
+
+@media (max-width: 599px) { .loc { stroke-width: 104px; } }
 
 /* very small phones (320 to 400px): the memorise / understand slider labels must fit beside the slider */
 @media (max-width: 400px) {

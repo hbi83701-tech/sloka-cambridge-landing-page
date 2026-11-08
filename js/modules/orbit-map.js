@@ -27,10 +27,14 @@ export function initOrbitMap() {
 
   // Phones: the orbit becomes a tall ellipse (narrow x, stretched y) with larger
   // names, so every label fits the width of the screen and stays readable.
-  const SX = env.mobile ? 0.6 : 1, SY = env.mobile ? 1.1 : 1;
-  const sizes = env.mobile ? [42, 38, 35] : SIZES;
+  // The phone map is drawn 1000 wide x MOB_H tall. MOB_H is tall on purpose: on a 320px screen one SVG unit is
+  // about 0.3px, so names are 12px+ only at sizes 42+, and a 44px tap row needs about 150 units of height each.
+  const PHONE = env.mobile && matchMedia('(max-width: 599px)').matches; // tablets (600-899px) keep the compact map
+  const MOB_H = PHONE ? 2600 : 1240;
+  const SX = env.mobile ? 0.6 : 1, SY = PHONE ? 2.3 : env.mobile ? 1.1 : 1;
+  const sizes = PHONE ? [46, 43, 43] : env.mobile ? [42, 38, 35] : SIZES;
   if (env.mobile) {
-    wrap.querySelector('.orbit-map__svg').setAttribute('viewBox', '-500 -620 1000 1240');
+    wrap.querySelector('.orbit-map__svg').setAttribute('viewBox', `-500 ${-MOB_H / 2} 1000 ${MOB_H}`);
     wrap.querySelector('.orbit-map__roads').setAttribute('transform', `scale(${SX} ${SY})`);
   }
 
@@ -38,7 +42,7 @@ export function initOrbitMap() {
   const eta = document.createElementNS(NS, 'g');
   eta.setAttribute('class', 'orbit-map__eta');
   const ETA_H = env.mobile ? 74 : 44; // phones: the map is drawn smaller, so the tag is drawn bigger
-  eta.innerHTML = `<rect height="${ETA_H}" rx="${ETA_H / 2}"/><text text-anchor="middle" dominant-baseline="central" font-size="${env.mobile ? 40 : 24}"></text>`;
+  eta.innerHTML = `<rect height="${ETA_H}" rx="${ETA_H / 2}"/><text text-anchor="middle" dominant-baseline="central" font-size="${PHONE ? 44 : env.mobile ? 40 : 24}"></text>`;
   route.after(eta);
   const etaRect = eta.querySelector('rect'), etaText = eta.querySelector('text');
   const minsLabel = (m) => (m ? `~${m[0]}–${m[1]} min` : '');
@@ -80,7 +84,8 @@ export function initOrbitMap() {
      no other name and stays clear of the centre and the edges. Runs once fonts
      are ready so text widths are real. Bearings stay roughly true ("not to scale"). */
   // phones keep a wider safety margin: their fonts/text-size settings can make names wider
-  const LIMIT_X = env.mobile ? 455 : 490, LIMIT_Y = env.mobile ? 600 : 490;
+  const LIMIT_X = env.mobile ? 455 : 490, LIMIT_Y = env.mobile ? MOB_H / 2 - (PHONE ? 40 : 20) : 490;
+  const PAD_Y = PHONE ? 82 : 8; // phones: names at least ~150 units apart = 44px tap rows
   function boxAt(it, angle, radius) {
     const a = (angle * Math.PI) / 180;
     const x = Math.sin(a) * radius * SX, y = -Math.cos(a) * radius * SY;
@@ -89,11 +94,11 @@ export function initOrbitMap() {
     const x0 = right ? x - 6 : x - 14 - w, x1 = right ? x + 14 + w : x + 6;
     return { x0, x1, y0: y - size * 0.72, y1: y + size * 0.42 };
   }
-  const hits = (p, q, pad = 8) => p.x0 < q.x1 + pad && q.x0 < p.x1 + pad && p.y0 < q.y1 + pad && q.y0 < p.y1 + pad;
+  const hits = (p, q, pad = 8, padY = pad) => p.x0 < q.x1 + pad && q.x0 < p.x1 + pad && p.y0 < q.y1 + padY && q.y0 < p.y1 + padY;
   function layout() {
     items.forEach((it) => { it.w = it.text.getComputedTextLength() || 0; });
     // keep clear of the mandala and the "Sloka, Manneguda" pin (drawn larger, relatively, on phones)
-    const centre = env.mobile ? { x0: -225, x1: 225, y0: -150, y1: 160 } : { x0: -150, x1: 150, y0: -140, y1: 200 };
+    const centre = env.mobile ? { x0: -225, x1: 225, y0: -150, y1: 170 } : { x0: -150, x1: 150, y0: -140, y1: 200 };
     const placed = [];
     [...items].sort((p, q) => p.ring - q.ring).forEach((it) => {
       const home = RINGS[it.ring];
@@ -103,7 +108,7 @@ export function initOrbitMap() {
           const d = step === 0 ? 0 : Math.ceil(step / 2) * 4 * (step % 2 ? 1 : -1);
           const box = boxAt(it, it.baseAngle + d, radius);
           const inside = box.x0 > -LIMIT_X && box.x1 < LIMIT_X && box.y0 > -LIMIT_Y && box.y1 < LIMIT_Y;
-          if (inside && !hits(box, centre) && !placed.some((b) => hits(box, b))) {
+          if (inside && !hits(box, centre) && !placed.some((b) => hits(box, b, 8, PAD_Y))) {
             it.angle = it.baseAngle + d;
             it.radius = radius;
             placed.push(box);
