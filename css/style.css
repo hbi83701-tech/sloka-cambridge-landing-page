@@ -1240,3 +1240,38 @@ mark.is-marked { background-size: 100% 100%; }
   .hero__form { max-height: calc(100svh - 24px); }
   .hero__form #ee-form-8 .ee-form-body { grid-template-columns: 1fr; }
 }
+
+/* ---------- 23. Campus motion ---------- */
+.flow--campus { overflow: hidden; }
+.flow--campus .flow__inner { position: relative; z-index: 1; }
+.campus__glow {
+  position: absolute; z-index: 0; right: -6%; top: 14%; width: min(48vw, 600px); aspect-ratio: 1; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(249, 194, 18, .55) 0%, rgba(232, 119, 36, .24) 42%, transparent 70%); filter: blur(10px);
+}
+
+/* moving strip between the heading and the photos */
+.campus__ticker {
+  overflow: hidden; margin: 0 0 clamp(22px, 3.4vw, 40px); border-radius: 999px;
+  background: var(--maroon); color: var(--yellow); box-shadow: 0 10px 26px -14px rgba(118, 21, 24, .6);
+}
+.campus__ticker-track { display: flex; align-items: center; width: max-content; padding: 12px 0; animation: campusTick 34s linear infinite; }
+.campus__ticker-track span { padding: 0 clamp(14px, 2vw, 28px); font-family: var(--f-display); font-size: clamp(1.05rem, .9rem + .6vw, 1.5rem); white-space: nowrap; color: var(--paper); }
+.campus__ticker-track i { font-style: normal; font-size: 1.05rem; color: var(--yellow); animation: campusSpin 6s linear infinite; display: inline-block; }
+.campus__ticker:hover .campus__ticker-track { animation-play-state: paused; }
+@keyframes campusTick { to { transform: translateX(-50%); } }
+@keyframes campusSpin { to { transform: rotate(360deg); } }
+
+/* empty photo frames: a soft light sweeps across and the label breathes, so they read as "photo arriving" */
+.mosaic__slot { position: relative; overflow: hidden; }
+.mosaic__slot::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(105deg, transparent 32%, rgba(255, 255, 255, .6) 50%, transparent 68%);
+  transform: translateX(-120%); animation: campusShimmer 3.4s ease-in-out infinite;
+}
+.mosaic__slot:nth-of-type(3)::after { animation-delay: .5s; }
+.mosaic__slot:nth-of-type(4)::after { animation-delay: 1s; }
+.mosaic__slot:nth-of-type(5)::after { animation-delay: 1.5s; }
+.mosaic__slot .slot__tag { animation: campusPulse 2.6s ease-in-out infinite; }
+@keyframes campusShimmer { 0%, 35% { transform: translateX(-120%); } 75%, 100% { transform: translateX(120%); } }
+@keyframes campusPulse { 50% { opacity: .45; letter-spacing: .24em; } }
+@media (prefers-reduced-motion: reduce) { .mosaic__slot::after { display: none; } }

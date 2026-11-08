@@ -10,6 +10,7 @@ import { runLoader } from './modules/loader.js';
 import { spark } from './modules/spark.js';
 import { initHero, heroIntro } from './modules/hero.js';
 import { initCompasses } from './modules/compass.js';
+import { initCampus } from './modules/campus.js';
 import { initApproach } from './modules/approach.js';
 import { initBento } from './modules/bento.js';
 import { initReasons } from './modules/reasons.js';
@@ -69,6 +70,7 @@ if (!env.hasLibs) {
     if (setUp) return;
     setUp = true;
     const steps = [
+      initCampus,
       initApproach,
       initBento, initReasons,
       initOrbitMap, initMapEmbed, initImageReveals, initSkew, initChrome, initFooter

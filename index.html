@@ -172,12 +172,22 @@
          Empty frames (.slot) are waiting for photos. To fill one, replace the <figure class="slot">
          with: <figure class="mosaic__item"><img src="assets/img/NAME-800.webp" width="1600" height="1200" loading="lazy" alt="..."></figure> -->
     <section class="flow flow--campus" id="campus" data-bg="cream" aria-labelledby="campus-title">
+      <span class="campus__glow" aria-hidden="true"></span>
       <div class="flow__inner">
         <header class="flow__head">
           <p class="eyebrow">01 · Our campus</p>
           <h2 class="display-md" id="campus-title" data-split>Step inside the school.</h2>
           <p class="flow__lede">The Sloka building in Manneguda, from the front gate to the classrooms.</p>
         </header>
+        <!-- moving strip: pure CSS, the two lists are identical so the loop is seamless -->
+        <div class="campus__ticker" aria-hidden="true">
+          <div class="campus__ticker-track">
+            <span>Cambridge curriculum</span><i>✦</i><span>Early Years to A Levels</span><i>✦</i><span>Manneguda, Hyderabad</span><i>✦</i>
+            <span>Cambridge curriculum</span><i>✦</i><span>Early Years to A Levels</span><i>✦</i><span>Manneguda, Hyderabad</span><i>✦</i>
+            <span>Cambridge curriculum</span><i>✦</i><span>Early Years to A Levels</span><i>✦</i><span>Manneguda, Hyderabad</span><i>✦</i>
+            <span>Cambridge curriculum</span><i>✦</i><span>Early Years to A Levels</span><i>✦</i><span>Manneguda, Hyderabad</span><i>✦</i>
+          </div>
+        </div>
         <div class="mosaic">
           <figure class="mosaic__item mosaic__item--lead">
             <img src="assets/img/hero-campus-800.webp" srcset="assets/img/hero-campus-480.webp 480w, assets/img/hero-campus-800.webp 800w, assets/img/hero-campus-1080.webp 1080w" sizes="(min-width: 900px) 58vw, 92vw" width="1536" height="1024" loading="lazy" decoding="async" alt="The Sloka International School building in Manneguda, its yellow facade glowing.">
