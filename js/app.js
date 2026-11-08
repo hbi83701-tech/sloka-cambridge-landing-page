@@ -11,7 +11,6 @@ import { spark } from './modules/spark.js';
 import { initHero, heroIntro } from './modules/hero.js';
 import { initCompasses } from './modules/compass.js';
 import { initApproach } from './modules/approach.js';
-import { initPathway } from './modules/pathway.js';
 import { initVoice } from './modules/voice.js';
 import { initBento } from './modules/bento.js';
 import { initReasons } from './modules/reasons.js';
@@ -72,7 +71,6 @@ if (!env.hasLibs) {
     setUp = true;
     const steps = [
       initApproach,
-      initPathway,          // pin #1
       initVoice, initBento, initReasons,
       initOrbitMap, initMapEmbed, initImageReveals, initSkew, initChrome, initFooter
     ];
