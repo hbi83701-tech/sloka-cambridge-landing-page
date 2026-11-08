@@ -7,6 +7,7 @@
    ===================================================================== */
 import { env, lerp, visibility } from './env.js';
 import { pulse } from './mandala.js';
+import { scroll } from './smooth.js';
 
 const RINGS = [200, 300, 400];
 const SIZES = [30, 26, 22];
@@ -166,6 +167,36 @@ export function initOrbitMap() {
     }
   }
 
+  /* After a search, bring the whole map into view (centred under the header) so the route and the
+     time tag are on screen; the answer and a "Change area" button also sit on the map itself. */
+  const answer = wrap.querySelector('.orbit-map__answer');
+  const changeBtn = wrap.querySelector('.orbit-map__change');
+  const goTo = (top) => {
+    if (scroll.lenis) scroll.lenis.scrollTo(top, { duration: env.reduced ? 0 : 1.2 });
+    else window.scrollTo({ top, behavior: env.reduced ? 'auto' : 'smooth' });
+  };
+  const headerH = () => document.querySelector('.site-header')?.offsetHeight || 72;
+  function showMap() {
+    const r = wrap.getBoundingClientRect(), h = headerH();
+    if (r.top >= h && r.bottom <= innerHeight) return;           // already fully on screen
+    const free = innerHeight - h;
+    goTo(r.top + scrollY - h - Math.max(0, (free - r.height) / 2));
+    if (env.touch) input.blur();                                  // phones: close the keyboard
+  }
+  changeBtn.addEventListener('click', () => {
+    const r = input.getBoundingClientRect();
+    goTo(r.top + scrollY - headerH() - 80);
+    setTimeout(() => { input.focus({ preventScroll: true }); input.select(); }, env.reduced ? 0 : 700);
+  });
+  let idleT;
+  const afterSearch = (now) => {
+    clearTimeout(idleT);
+    if (!hit) return;
+    if (now) showMap(); else idleT = setTimeout(showMap, 1400); // typing: wait until they pause
+  };
+  input.addEventListener('change', () => afterSearch(true));      // Enter, picking a suggestion, leaving the field
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') afterSearch(true); });
+
   let settleTimer;
   input.addEventListener('input', () => {
     const q = norm(input.value);
@@ -195,6 +226,10 @@ export function initOrbitMap() {
         ? `${match.name} → Sloka, Manneguda: about ${match.mins[0]}–${match.mins[1]} minutes by car.`
         : `${match.name} → Sloka, Manneguda. Come and see us.`;
       note.hidden = !match.mins;
+      answer.textContent = match.mins
+        ? `${match.name} → Sloka: about ${match.mins[0]}–${match.mins[1]} min by car`
+        : `${match.name} → Sloka, Manneguda`;
+      answer.hidden = false; changeBtn.hidden = false;
       // pre-select the same area in the enquiry form
       const sel = document.querySelector('[data-area-select]');
       if (sel && [...sel.options].some((o) => o.value === match.name)) sel.value = match.name;
@@ -204,8 +239,10 @@ export function initOrbitMap() {
       route.setAttribute('d', '');
       eta.classList.remove('is-on');
       note.hidden = true;
+      answer.hidden = true; changeBtn.hidden = true;
       result.textContent = q.length >= 2 ? 'Not on our little map yet. Tell us in the enquiry form and we will share directions.' : '';
     }
+    afterSearch(false);   // once they pause typing on a match, scroll down to the map
   });
 }
 

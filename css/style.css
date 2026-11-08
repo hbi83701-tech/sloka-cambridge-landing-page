@@ -709,7 +709,8 @@ mark.is-marked { background-size: 100% 100%; }
 .orbit-map__eta.is-on { opacity: 1; }
 .orbit-map__eta rect { fill: var(--yellow); stroke: var(--maroon-deep); stroke-width: 3; }
 .orbit-map__eta text { font-family: var(--f-body); font-weight: 700; fill: var(--maroon-deep); }
-.orbit-map { position: relative; width: min(980px, 100%); aspect-ratio: 1; margin: 20px auto 0; }
+/* the map is a square that never grows taller than the screen (minus the header), so the whole circle fits at once */
+.orbit-map { position: relative; width: min(980px, 100%, calc(100vh - 110px), calc(100svh - 110px)); aspect-ratio: 1; margin: 20px auto 0; }
 .orbit-map__svg { width: 100%; height: 100%; overflow: visible; }
 .orbit-map--still .orbit-map__svg { animation: mapBreathe 5s ease-in-out infinite alternate; will-change: transform; }
 @keyframes mapBreathe { from { transform: scale(.985); } to { transform: scale(1.01); } }
@@ -932,7 +933,7 @@ mark.is-marked { background-size: 100% 100%; }
   .outcomes__pin { gap: 14px; }
 
   /* the orbit map becomes a tall ellipse so every name fits the screen */
-  .orbit-map { width: 100%; margin-left: 0; aspect-ratio: 1000 / 1240; }
+  .orbit-map { width: min(100%, calc((100svh - 130px) * 1000 / 1240)); margin-left: auto; aspect-ratio: 1000 / 1240; }
   .orbit-map__mandala { width: 20%; }
   .orbit-map__pin { top: calc(50% + 7.5%); }
   .road { stroke-width: 4; }
@@ -1429,3 +1430,16 @@ mark.is-marked { background-size: 100% 100%; }
   .journey__spark { width: 46px; height: 46px; }
 }
 @media (prefers-reduced-motion: reduce) { .jstop__card, .jstop__node { transition: none; } }
+
+/* ---------- 26. Map: answer chip + "Change area" (shown after a search) ---------- */
+.orbit-map__answer {
+  position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); z-index: 3; margin: 0; max-width: 92%;
+  padding: .55em 1.1em; border-radius: 999px; background: var(--yellow); color: var(--maroon-deep);
+  font-weight: 700; font-size: clamp(.85rem, .75rem + .4vw, 1.05rem); text-align: center; box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .6);
+}
+.orbit-map__change {
+  position: absolute; left: 0; top: 0; z-index: 3; padding: .45em 1em; border: 2px solid rgba(251, 245, 233, .6); border-radius: 999px; cursor: pointer;
+  background: rgba(26, 17, 16, .55); color: var(--paper); font: 700 .85rem var(--f-body); transition: background-color .25s, color .25s;
+}
+.orbit-map__change:hover, .orbit-map__change:focus-visible { background: var(--yellow); color: var(--ink); border-color: var(--yellow); }
+.orbit-map__answer[hidden], .orbit-map__change[hidden] { display: none; }

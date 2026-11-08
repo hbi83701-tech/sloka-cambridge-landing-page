@@ -717,6 +717,9 @@
         <div class="orbit-map__mandala mandala" data-mandala="dark"></div>
         <p class="orbit-map__pin">Sloka, Manneguda</p>
         <p class="orbit-map__caption hand">illustration, not to scale</p>
+        <!-- shown after a search, so the answer stays on screen when the page scrolls down to the map -->
+        <p class="orbit-map__answer" aria-hidden="true" hidden></p>
+        <button class="orbit-map__change" type="button" hidden>↑ Change area</button>
         <ul class="visually-hidden" aria-label="Neighbourhoods near Sloka Manneguda" data-locality-list></ul>
       </div>
       <datalist id="localityList"></datalist>
