@@ -1475,3 +1475,29 @@ mark.is-marked { background-size: 100% 100%; }
   .location__panel { grid-column: 1; grid-row: 1; }
   .location__grid .orbit-map { grid-column: 1; grid-row: 2; width: min(100%, calc((100svh - 130px) * 1000 / 1240)); }
 }
+
+/* ---------- 29. Phones: tap size, readable text, no iOS zoom ---------- */
+@media (max-width: 899px) {
+  /* fields in the hero form: 16px text (iPhones zoom the whole page when a smaller field is tapped) and thumb-sized height */
+  .hero__form { --hf: 44px; }
+  .hero__form #ee-form-8 input[type="text"], .hero__form #ee-form-8 input[type="tel"], .hero__form #ee-form-8 input[type="email"], .hero__form #ee-form-8 input:not([type]),
+  .hero__form #ee-form-8 .select2-selection__rendered, .hero__form #ee-form-8 .select2-search__field { font-size: 16px !important; }
+  .hero__form #ee-form-8 label { font-size: .75rem; }
+  .hero__form #ee-form-8 .check-box-field label span { font-size: .88rem !important; line-height: 1.35 !important; }
+  .hero__form #ee-form-8 .check-box-field input[type="checkbox"] { width: 24px; height: 24px; }
+  .hero__form-seats { font-size: .75rem; }
+  /* the small uppercase labels were 11px: keep every label at 12px or more */
+  .loc-card__stats dt, .jstop__label, .eyebrow { font-size: .75rem; }
+  /* footer links: comfortable to tap */
+  .footer__list a { display: inline-block; padding: 9px 0; }
+}
+@media (hover: none) {
+  /* map places: a wider invisible edge around each name so a fingertip can hit it */
+  .loc { stroke: transparent; stroke-width: 34px; stroke-linejoin: round; paint-order: stroke; pointer-events: all; }
+}
+
+/* very small phones (320 to 400px): the memorise / understand slider labels must fit beside the slider */
+@media (max-width: 400px) {
+  .split__control { gap: 10px; }
+  .split__control .hand { font-size: 1.2rem; }
+}
