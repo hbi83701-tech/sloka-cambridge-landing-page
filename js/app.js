@@ -10,16 +10,11 @@ import { runLoader } from './modules/loader.js';
 import { spark } from './modules/spark.js';
 import { initHero, heroIntro } from './modules/hero.js';
 import { initCompasses } from './modules/compass.js';
-import { initSeven } from './modules/seven.js';
 import { initApproach } from './modules/approach.js';
 import { initPathway } from './modules/pathway.js';
-import { initResults } from './modules/results.js';
 import { initVoice } from './modules/voice.js';
 import { initBento } from './modules/bento.js';
 import { initReasons } from './modules/reasons.js';
-import { initPrism } from './modules/prism.js';
-import { initLetter } from './modules/letter.js';
-import { initStories } from './modules/stories.js';
 import { initOrbitMap, initMapEmbed } from './modules/orbit-map.js';
 import { initBgMorph, initTextReveals, initImageReveals, initSkew, initChrome, initFooter } from './modules/motion.js';
 
@@ -76,12 +71,10 @@ if (!env.hasLibs) {
     if (setUp) return;
     setUp = true;
     const steps = [
-      initSeven, initApproach,
+      initApproach,
       initPathway,          // pin #1
-      initResults, initVoice, initBento, initReasons,
-      initPrism,            // pin #2
-      initLetter,           // pin #3 (laptops/desktops)
-      initStories, initOrbitMap, initMapEmbed, initImageReveals, initSkew, initChrome, initFooter
+      initVoice, initBento, initReasons,
+      initOrbitMap, initMapEmbed, initImageReveals, initSkew, initChrome, initFooter
     ];
     for (const step of steps) {
       step();
