@@ -74,13 +74,25 @@ export function initJourney() {
   }
 
   root.classList.add('journey--live');
+  /* Progress is measured from the section's REAL position on every frame (not from ScrollTrigger's start and
+     end points, which are fixed when the page loads and go stale if fonts or images above change the layout
+     afterwards; the road would then finish before you scroll to it). 0 when the top of the road reaches 62% of
+     the screen, 1 when its bottom reaches 58%; the value eases toward the target so the motion stays smooth. */
   const state = { p: 0 };
-  gsap.to(state, {
-    p: 1, ease: 'none',
-    scrollTrigger: { trigger: root, start: 'top 62%', end: 'bottom 58%', scrub: 0.6 },
-    onUpdate: () => render(state.p)
-  });
-  render(0);
+  const target = () => {
+    const r = root.getBoundingClientRect(), vh = innerHeight;
+    return Math.min(1, Math.max(0, (vh * 0.62 - r.top) / (r.height + vh * 0.04)));
+  };
+  state.p = target();
+  render(state.p);
+  let lastRendered = state.p;
+  const tick = () => {
+    const goal = target();
+    state.p += (goal - state.p) * 0.16;
+    if (Math.abs(goal - state.p) < 0.0008) state.p = goal;
+    if (state.p !== lastRendered) { lastRendered = state.p; render(state.p); }
+  };
+  gsap.ticker.add(tick);
 
   // rebuild when the layout changes (resize, fonts, tabs elsewhere changing heights)
   let t;
