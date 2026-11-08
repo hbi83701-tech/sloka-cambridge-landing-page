@@ -604,22 +604,50 @@
       </div>
     </section>
 
-    <!-- ================= 3.6 ADMISSION STEPS: fill in each step ================= -->
-    <section class="flow flow--steps theme-dark" id="steps" data-bg="maroon" aria-labelledby="steps-title">
-      <div class="flow__inner flow__inner--split">
-        <div class="steps__intro">
-          <p class="eyebrow eyebrow--light">05 · Admission</p>
-          <h2 class="display-md" id="steps-title" data-split>Five steps to join.</h2>
-          <p class="flow__lede">From first enquiry to the first day of school.</p>
+    <!-- ================= 3.6 ADMISSION JOURNEY: fill in each step's title and description =================
+         A road draws itself between the stops as you scroll and the Sloka spark rides along it
+         (js/modules/journey.js). Without JS or with reduced motion all stops are simply lit. -->
+    <section class="flow flow--journey theme-dark" id="steps" data-bg="maroon" aria-labelledby="steps-title">
+      <div class="flow__inner">
+        <header class="journey__intro">
+          <div class="journey__intro-text">
+            <p class="eyebrow eyebrow--light">05 · Admission</p>
+            <h2 class="display-md" id="steps-title" data-split>Five steps to join.</h2>
+            <p class="flow__lede">From first enquiry to the first day of school.</p>
+          </div>
           <a class="btn btn--yellow btn--lg" href="#enquiry-form">Enquire now</a>
+        </header>
+
+        <div class="journey" data-journey>
+          <svg class="journey__road" aria-hidden="true" focusable="false"><path class="journey__road-base" d=""/><path class="journey__road-draw" d=""/></svg>
+          <span class="journey__spark mandala" data-mandala aria-hidden="true"></span>
+          <ol class="journey__stops">
+            <li class="jstop jstop--l">
+              <span class="jstop__node" aria-hidden="true">1</span>
+              <div class="jstop__card"><p class="jstop__label">Step 1</p><h3>Step title to add</h3><p>Short description to add.</p></div>
+            </li>
+            <li class="jstop jstop--r">
+              <span class="jstop__node" aria-hidden="true">2</span>
+              <div class="jstop__card"><p class="jstop__label">Step 2</p><h3>Step title to add</h3><p>Short description to add.</p></div>
+            </li>
+            <li class="jstop jstop--l">
+              <span class="jstop__node" aria-hidden="true">3</span>
+              <div class="jstop__card"><p class="jstop__label">Step 3</p><h3>Step title to add</h3><p>Short description to add.</p></div>
+            </li>
+            <li class="jstop jstop--r">
+              <span class="jstop__node" aria-hidden="true">4</span>
+              <div class="jstop__card"><p class="jstop__label">Step 4</p><h3>Step title to add</h3><p>Short description to add.</p></div>
+            </li>
+            <li class="jstop jstop--l">
+              <span class="jstop__node" aria-hidden="true">5</span>
+              <div class="jstop__card"><p class="jstop__label">Step 5</p><h3>Step title to add</h3><p>Short description to add.</p></div>
+            </li>
+            <li class="jstop jstop--end">
+              <span class="jstop__node jstop__node--end" aria-hidden="true">✦</span>
+              <p class="jstop__finish">First day of school</p>
+            </li>
+          </ol>
         </div>
-        <ol class="steps">
-          <li class="step"><span class="step__no" aria-hidden="true">1</span><div><h3>Step title to add</h3><p>Short description to add.</p></div></li>
-          <li class="step"><span class="step__no" aria-hidden="true">2</span><div><h3>Step title to add</h3><p>Short description to add.</p></div></li>
-          <li class="step"><span class="step__no" aria-hidden="true">3</span><div><h3>Step title to add</h3><p>Short description to add.</p></div></li>
-          <li class="step"><span class="step__no" aria-hidden="true">4</span><div><h3>Step title to add</h3><p>Short description to add.</p></div></li>
-          <li class="step"><span class="step__no" aria-hidden="true">5</span><div><h3>Step title to add</h3><p>Short description to add.</p></div></li>
-        </ol>
       </div>
     </section>
 

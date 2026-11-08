@@ -15,6 +15,7 @@ import { initApproach } from './modules/approach.js';
 import { initBento } from './modules/bento.js';
 import { initReasons } from './modules/reasons.js';
 import { initFees } from './modules/fees.js';
+import { initJourney } from './modules/journey.js';
 import { initOrbitMap, initMapEmbed } from './modules/orbit-map.js';
 import { initBgMorph, initTextReveals, initImageReveals, initSkew, initChrome, initFooter } from './modules/motion.js';
 
@@ -74,7 +75,7 @@ if (!env.hasLibs) {
       initCampus,
       initApproach,
       initBento, initReasons, initFees,
-      initOrbitMap, initMapEmbed, initImageReveals, initSkew, initChrome, initFooter
+      initOrbitMap, initMapEmbed, initJourney, initImageReveals, initSkew, initChrome, initFooter
     ];
     for (const step of steps) {
       step();

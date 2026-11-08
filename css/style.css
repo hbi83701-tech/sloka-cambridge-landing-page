@@ -1365,3 +1365,67 @@ mark.is-marked { background-size: 100% 100%; }
   .fees--live .fees__tabs::-webkit-scrollbar { display: none; }
   .fees__tab { flex: none; }
 }
+
+/* ---------- 25. Admission journey ----------
+   A road (SVG, built by js/modules/journey.js) winds through six stops. Base layout works without
+   JS: stops alternate left/right on desktop and stack beside a left rail on phones. */
+.flow--journey { overflow: hidden; }
+.journey__intro { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px 40px; flex-wrap: wrap; margin-bottom: clamp(28px, 5vw, 64px); }
+.journey__intro-text { display: grid; gap: 14px; max-width: 52ch; }
+.journey__intro .display-md { margin: 0; }
+
+.journey { position: relative; }
+.journey__road { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0; }
+.journey__road path { fill: none; stroke-linecap: round; }
+.journey__road-base { stroke: rgba(251, 245, 233, .32); stroke-width: 4; stroke-dasharray: 1 14; }
+.journey__road-draw { stroke: var(--yellow); stroke-width: 7; filter: drop-shadow(0 0 8px rgba(249, 194, 18, .55)); }
+.journey__spark { position: absolute; left: 0; top: 0; z-index: 3; width: 58px; height: 58px; pointer-events: none; will-change: transform; filter: drop-shadow(0 4px 12px rgba(26, 17, 16, .5)); }
+
+.journey__stops { list-style: none; margin: 0; padding: 0; position: relative; z-index: 1; }
+.jstop { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: center; padding: clamp(14px, 2.4vw, 30px) 0; }
+.jstop__node {
+  grid-row: 1; justify-self: center; z-index: 2; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%;
+  background: var(--maroon-deep); color: var(--paper); border: 3px solid rgba(251, 245, 233, .5); font-family: var(--f-display); font-size: 1.7rem;
+  transition: background-color .4s, color .4s, border-color .4s, transform .5s var(--ease-out), box-shadow .5s;
+}
+.jstop--l .jstop__node { grid-column: 4; }
+.jstop--r .jstop__node { grid-column: 9; }
+.jstop--l .jstop__card { grid-column: 6 / span 6; grid-row: 1; }
+.jstop--r .jstop__card { grid-column: 1 / span 6; grid-row: 1; text-align: right; }
+.jstop__card {
+  position: relative; padding: clamp(14px, 1.8vw, 22px) clamp(16px, 2.2vw, 28px); border-radius: 18px;
+  background: rgba(251, 245, 233, .08); border: 1px solid rgba(251, 245, 233, .22); color: var(--paper);
+  transition: background-color .5s, color .5s, transform .6s var(--ease-out), opacity .5s, box-shadow .5s;
+}
+.jstop__label { margin: 0 0 4px; font-weight: 700; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--yellow); }
+.jstop__card h3 { margin: 0 0 4px; font-family: var(--f-display); font-weight: 400; font-size: clamp(1.3rem, 1.1rem + .8vw, 1.8rem); line-height: 1.1; }
+.jstop__card p:last-child { margin: 0; opacity: .85; }
+
+/* the finish */
+.jstop--end { grid-template-columns: 1fr; justify-items: center; gap: 10px; padding-bottom: 0; }
+.jstop__node--end { width: 76px; height: 76px; font-size: 2rem; color: var(--yellow); }
+.jstop__finish { margin: 0; font-family: var(--f-display); font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2.1rem); color: var(--yellow); text-align: center; }
+
+/* lit stops (script adds .is-on as the spark arrives) */
+.journey--live .jstop:not(.is-on) .jstop__card { opacity: .35; transform: translateX(34px) scale(.97); }
+.journey--live .jstop--r:not(.is-on) .jstop__card { transform: translateX(-34px) scale(.97); }
+.jstop.is-on .jstop__node { background: var(--yellow); color: var(--ink); border-color: var(--yellow); transform: scale(1.14); box-shadow: 0 0 0 8px rgba(249, 194, 18, .22), 0 10px 24px -8px rgba(0, 0, 0, .5); }
+.jstop.is-on .jstop__card { background: var(--paper); color: var(--ink); border-color: transparent; box-shadow: 0 22px 40px -22px rgba(0, 0, 0, .6); }
+.jstop.is-on .jstop__label { color: var(--orange); }
+.jstop.is-on .jstop__card h3 { color: var(--maroon); }
+.jstop--end.is-on .jstop__node--end { background: var(--yellow); color: var(--maroon); }
+.journey--live .jstop--end:not(.is-on) .jstop__finish { opacity: .4; }
+.jstop__finish { transition: opacity .5s; }
+
+/* phones: one rail on the left, cards to its right */
+@media (max-width: 899px) {
+  .jstop { grid-template-columns: 56px minmax(0, 1fr); column-gap: 14px; }
+  .jstop--l .jstop__node, .jstop--r .jstop__node { grid-column: 1; width: 52px; height: 52px; font-size: 1.4rem; }
+  .jstop--l .jstop__card, .jstop--r .jstop__card { grid-column: 2; text-align: left; }
+  .journey--live .jstop--r:not(.is-on) .jstop__card { transform: translateX(34px) scale(.97); }
+  .jstop--end { grid-template-columns: 56px minmax(0, 1fr); justify-items: start; align-items: center; }
+  .jstop--end .jstop__node--end { grid-column: 1; width: 52px; height: 52px; }
+  .jstop--end .jstop__finish { grid-column: 2; text-align: left; }
+  .journey__spark { width: 46px; height: 46px; }
+}
+@media (prefers-reduced-motion: reduce) { .jstop__card, .jstop__node { transition: none; } }
